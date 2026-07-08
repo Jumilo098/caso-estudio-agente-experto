@@ -1,0 +1,1552 @@
+{
+  "ss_10000_H1": {
+    "archivo_reporte": "bt_ss_10000_H1.htm",
+    "parametros": "LoteBase=0.01 FactorLote=1.0 SLPorc=1.0 PasoPorc=0.5 MaxNiveles=8 TrailingComun=true NumeroMagico=2026070807 EsperaReintento=5 SemillaAleatoria=11111",
+    "deposito": 10000.0,
+    "calidad_historial": "100%",
+    "barras": 4488.0,
+    "beneficio_neto": 1864.55,
+    "beneficio_bruto": 2519.43,
+    "perdidas_brutas": -654.88,
+    "profit_factor": 3.85,
+    "beneficio_esperado": 10.9,
+    "factor_recuperacion": 1.01,
+    "sharpe": 1.26,
+    "dd_max_balance": {
+      "valor": 256.34,
+      "pct": 2.52
+    },
+    "dd_max_equidad": {
+      "valor": 1844.24,
+      "pct": 15.11
+    },
+    "trades": 171.0,
+    "ganadoras": {
+      "valor": 78.0,
+      "pct": 45.61
+    },
+    "perdedoras": {
+      "valor": 93.0,
+      "pct": 54.39
+    }
+  },
+  "ss_10000_H4": {
+    "archivo_reporte": "bt_ss_10000_H4.htm",
+    "parametros": "LoteBase=0.01 FactorLote=1.0 SLPorc=1.0 PasoPorc=0.5 MaxNiveles=8 TrailingComun=true NumeroMagico=2026070807 EsperaReintento=5 SemillaAleatoria=11111",
+    "deposito": 10000.0,
+    "calidad_historial": "100%",
+    "barras": 1122.0,
+    "beneficio_neto": 1864.55,
+    "beneficio_bruto": 2519.43,
+    "perdidas_brutas": -654.88,
+    "profit_factor": 3.85,
+    "beneficio_esperado": 10.9,
+    "factor_recuperacion": 1.01,
+    "sharpe": 1.29,
+    "dd_max_balance": {
+      "valor": 256.34,
+      "pct": 2.52
+    },
+    "dd_max_equidad": {
+      "valor": 1844.24,
+      "pct": 15.11
+    },
+    "trades": 171.0,
+    "ganadoras": {
+      "valor": 78.0,
+      "pct": 45.61
+    },
+    "perdedoras": {
+      "valor": 93.0,
+      "pct": 54.39
+    }
+  },
+  "ss_10000_M15": {
+    "archivo_reporte": "bt_ss_10000_M15.htm",
+    "parametros": "LoteBase=0.01 FactorLote=1.0 SLPorc=1.0 PasoPorc=0.5 MaxNiveles=8 TrailingComun=true NumeroMagico=2026070807 EsperaReintento=5 SemillaAleatoria=11111",
+    "deposito": 10000.0,
+    "calidad_historial": "100%",
+    "barras": 17952.0,
+    "beneficio_neto": 1864.55,
+    "beneficio_bruto": 2519.43,
+    "perdidas_brutas": -654.88,
+    "profit_factor": 3.85,
+    "beneficio_esperado": 10.9,
+    "factor_recuperacion": 1.01,
+    "sharpe": 1.22,
+    "dd_max_balance": {
+      "valor": 256.34,
+      "pct": 2.52
+    },
+    "dd_max_equidad": {
+      "valor": 1844.24,
+      "pct": 15.11
+    },
+    "trades": 171.0,
+    "ganadoras": {
+      "valor": 78.0,
+      "pct": 45.61
+    },
+    "perdedoras": {
+      "valor": 93.0,
+      "pct": 54.39
+    }
+  },
+  "ss_10000_M30": {
+    "archivo_reporte": "bt_ss_10000_M30.htm",
+    "parametros": "LoteBase=0.01 FactorLote=1.0 SLPorc=1.0 PasoPorc=0.5 MaxNiveles=8 TrailingComun=true NumeroMagico=2026070807 EsperaReintento=5 SemillaAleatoria=11111",
+    "deposito": 10000.0,
+    "calidad_historial": "100%",
+    "barras": 8976.0,
+    "beneficio_neto": 1864.55,
+    "beneficio_bruto": 2519.43,
+    "perdidas_brutas": -654.88,
+    "profit_factor": 3.85,
+    "beneficio_esperado": 10.9,
+    "factor_recuperacion": 1.01,
+    "sharpe": 1.24,
+    "dd_max_balance": {
+      "valor": 256.34,
+      "pct": 2.52
+    },
+    "dd_max_equidad": {
+      "valor": 1844.24,
+      "pct": 15.11
+    },
+    "trades": 171.0,
+    "ganadoras": {
+      "valor": 78.0,
+      "pct": 45.61
+    },
+    "perdedoras": {
+      "valor": 93.0,
+      "pct": 54.39
+    }
+  },
+  "ss_10000_M5": {
+    "archivo_reporte": "bt_ss_10000_M5.htm",
+    "parametros": "LoteBase=0.01 FactorLote=1.0 SLPorc=1.0 PasoPorc=0.5 MaxNiveles=8 TrailingComun=true NumeroMagico=2026070807 EsperaReintento=5 SemillaAleatoria=11111",
+    "deposito": 10000.0,
+    "calidad_historial": "100%",
+    "barras": 53852.0,
+    "beneficio_neto": 1864.55,
+    "beneficio_bruto": 2519.43,
+    "perdidas_brutas": -654.88,
+    "profit_factor": 3.85,
+    "beneficio_esperado": 10.9,
+    "factor_recuperacion": 1.01,
+    "sharpe": 1.22,
+    "dd_max_balance": {
+      "valor": 256.34,
+      "pct": 2.52
+    },
+    "dd_max_equidad": {
+      "valor": 1844.24,
+      "pct": 15.11
+    },
+    "trades": 171.0,
+    "ganadoras": {
+      "valor": 78.0,
+      "pct": 45.61
+    },
+    "perdedoras": {
+      "valor": 93.0,
+      "pct": 54.39
+    }
+  },
+  "ss_1000_H1": {
+    "archivo_reporte": "bt_ss_1000_H1.htm",
+    "parametros": "LoteBase=0.01 FactorLote=1.0 SLPorc=1.0 PasoPorc=0.5 MaxNiveles=8 TrailingComun=true NumeroMagico=2026070807 EsperaReintento=5 SemillaAleatoria=11111",
+    "deposito": 1000.0,
+    "calidad_historial": "100%",
+    "barras": 4488.0,
+    "beneficio_neto": 1864.55,
+    "beneficio_bruto": 2519.43,
+    "perdidas_brutas": -654.88,
+    "profit_factor": 3.85,
+    "beneficio_esperado": 10.9,
+    "factor_recuperacion": 1.01,
+    "sharpe": 1.47,
+    "dd_max_balance": {
+      "valor": 256.34,
+      "pct": 21.71
+    },
+    "dd_max_equidad": {
+      "valor": 1844.24,
+      "pct": 57.6
+    },
+    "trades": 171.0,
+    "ganadoras": {
+      "valor": 78.0,
+      "pct": 45.61
+    },
+    "perdedoras": {
+      "valor": 93.0,
+      "pct": 54.39
+    }
+  },
+  "ss_1000_H4": {
+    "archivo_reporte": "bt_ss_1000_H4.htm",
+    "parametros": "LoteBase=0.01 FactorLote=1.0 SLPorc=1.0 PasoPorc=0.5 MaxNiveles=8 TrailingComun=true NumeroMagico=2026070807 EsperaReintento=5 SemillaAleatoria=11111",
+    "deposito": 1000.0,
+    "calidad_historial": "100%",
+    "barras": 1122.0,
+    "beneficio_neto": 1864.55,
+    "beneficio_bruto": 2519.43,
+    "perdidas_brutas": -654.88,
+    "profit_factor": 3.85,
+    "beneficio_esperado": 10.9,
+    "factor_recuperacion": 1.01,
+    "sharpe": 1.47,
+    "dd_max_balance": {
+      "valor": 256.34,
+      "pct": 21.71
+    },
+    "dd_max_equidad": {
+      "valor": 1844.24,
+      "pct": 57.6
+    },
+    "trades": 171.0,
+    "ganadoras": {
+      "valor": 78.0,
+      "pct": 45.61
+    },
+    "perdedoras": {
+      "valor": 93.0,
+      "pct": 54.39
+    }
+  },
+  "ss_1000_M15": {
+    "archivo_reporte": "bt_ss_1000_M15.htm",
+    "parametros": "LoteBase=0.01 FactorLote=1.0 SLPorc=1.0 PasoPorc=0.5 MaxNiveles=8 TrailingComun=true NumeroMagico=2026070807 EsperaReintento=5 SemillaAleatoria=11111",
+    "deposito": 1000.0,
+    "calidad_historial": "100%",
+    "barras": 17952.0,
+    "beneficio_neto": 1864.55,
+    "beneficio_bruto": 2519.43,
+    "perdidas_brutas": -654.88,
+    "profit_factor": 3.85,
+    "beneficio_esperado": 10.9,
+    "factor_recuperacion": 1.01,
+    "sharpe": 1.41,
+    "dd_max_balance": {
+      "valor": 256.34,
+      "pct": 21.71
+    },
+    "dd_max_equidad": {
+      "valor": 1844.24,
+      "pct": 57.6
+    },
+    "trades": 171.0,
+    "ganadoras": {
+      "valor": 78.0,
+      "pct": 45.61
+    },
+    "perdedoras": {
+      "valor": 93.0,
+      "pct": 54.39
+    }
+  },
+  "ss_1000_M30": {
+    "archivo_reporte": "bt_ss_1000_M30.htm",
+    "parametros": "LoteBase=0.01 FactorLote=1.0 SLPorc=1.0 PasoPorc=0.5 MaxNiveles=8 TrailingComun=true NumeroMagico=2026070807 EsperaReintento=5 SemillaAleatoria=11111",
+    "deposito": 1000.0,
+    "calidad_historial": "100%",
+    "barras": 8976.0,
+    "beneficio_neto": 1864.55,
+    "beneficio_bruto": 2519.43,
+    "perdidas_brutas": -654.88,
+    "profit_factor": 3.85,
+    "beneficio_esperado": 10.9,
+    "factor_recuperacion": 1.01,
+    "sharpe": 1.44,
+    "dd_max_balance": {
+      "valor": 256.34,
+      "pct": 21.71
+    },
+    "dd_max_equidad": {
+      "valor": 1844.24,
+      "pct": 57.6
+    },
+    "trades": 171.0,
+    "ganadoras": {
+      "valor": 78.0,
+      "pct": 45.61
+    },
+    "perdedoras": {
+      "valor": 93.0,
+      "pct": 54.39
+    }
+  },
+  "ss_1000_M5": {
+    "archivo_reporte": "bt_ss_1000_M5.htm",
+    "parametros": "LoteBase=0.01 FactorLote=1.0 SLPorc=1.0 PasoPorc=0.5 MaxNiveles=8 TrailingComun=true NumeroMagico=2026070807 EsperaReintento=5 SemillaAleatoria=11111",
+    "deposito": 1000.0,
+    "calidad_historial": "100%",
+    "barras": 53852.0,
+    "beneficio_neto": 1864.55,
+    "beneficio_bruto": 2519.43,
+    "perdidas_brutas": -654.88,
+    "profit_factor": 3.85,
+    "beneficio_esperado": 10.9,
+    "factor_recuperacion": 1.01,
+    "sharpe": 1.43,
+    "dd_max_balance": {
+      "valor": 256.34,
+      "pct": 21.71
+    },
+    "dd_max_equidad": {
+      "valor": 1844.24,
+      "pct": 57.6
+    },
+    "trades": 171.0,
+    "ganadoras": {
+      "valor": 78.0,
+      "pct": 45.61
+    },
+    "perdedoras": {
+      "valor": 93.0,
+      "pct": 54.39
+    }
+  },
+  "ss_100_H1": {
+    "archivo_reporte": "bt_ss_100_H1.htm",
+    "parametros": "LoteBase=0.01 FactorLote=1.0 SLPorc=1.0 PasoPorc=0.5 MaxNiveles=8 TrailingComun=true NumeroMagico=2026070807 EsperaReintento=5 SemillaAleatoria=11111",
+    "deposito": 100.0,
+    "calidad_historial": "100%",
+    "barras": 4488.0,
+    "beneficio_neto": 1864.55,
+    "beneficio_bruto": 2519.43,
+    "perdidas_brutas": -654.88,
+    "profit_factor": 3.85,
+    "beneficio_esperado": 10.9,
+    "factor_recuperacion": 1.01,
+    "sharpe": 1.21,
+    "dd_max_balance": {
+      "valor": 256.34,
+      "pct": 91.26
+    },
+    "dd_max_equidad": {
+      "valor": 1844.24,
+      "pct": 80.12
+    },
+    "trades": 171.0,
+    "ganadoras": {
+      "valor": 78.0,
+      "pct": 45.61
+    },
+    "perdedoras": {
+      "valor": 93.0,
+      "pct": 54.39
+    }
+  },
+  "ss_100_H4": {
+    "archivo_reporte": "bt_ss_100_H4.htm",
+    "parametros": "LoteBase=0.01 FactorLote=1.0 SLPorc=1.0 PasoPorc=0.5 MaxNiveles=8 TrailingComun=true NumeroMagico=2026070807 EsperaReintento=5 SemillaAleatoria=11111",
+    "deposito": 100.0,
+    "calidad_historial": "100%",
+    "barras": 1122.0,
+    "beneficio_neto": 1864.55,
+    "beneficio_bruto": 2519.43,
+    "perdidas_brutas": -654.88,
+    "profit_factor": 3.85,
+    "beneficio_esperado": 10.9,
+    "factor_recuperacion": 1.01,
+    "sharpe": 1.2,
+    "dd_max_balance": {
+      "valor": 256.34,
+      "pct": 91.26
+    },
+    "dd_max_equidad": {
+      "valor": 1844.24,
+      "pct": 80.12
+    },
+    "trades": 171.0,
+    "ganadoras": {
+      "valor": 78.0,
+      "pct": 45.61
+    },
+    "perdedoras": {
+      "valor": 93.0,
+      "pct": 54.39
+    }
+  },
+  "ss_100_M15": {
+    "archivo_reporte": "bt_ss_100_M15.htm",
+    "parametros": "LoteBase=0.01 FactorLote=1.0 SLPorc=1.0 PasoPorc=0.5 MaxNiveles=8 TrailingComun=true NumeroMagico=2026070807 EsperaReintento=5 SemillaAleatoria=11111",
+    "deposito": 100.0,
+    "calidad_historial": "100%",
+    "barras": 17952.0,
+    "beneficio_neto": 1864.55,
+    "beneficio_bruto": 2519.43,
+    "perdidas_brutas": -654.88,
+    "profit_factor": 3.85,
+    "beneficio_esperado": 10.9,
+    "factor_recuperacion": 1.01,
+    "sharpe": 1.15,
+    "dd_max_balance": {
+      "valor": 256.34,
+      "pct": 91.26
+    },
+    "dd_max_equidad": {
+      "valor": 1844.24,
+      "pct": 80.12
+    },
+    "trades": 171.0,
+    "ganadoras": {
+      "valor": 78.0,
+      "pct": 45.61
+    },
+    "perdedoras": {
+      "valor": 93.0,
+      "pct": 54.39
+    }
+  },
+  "ss_100_M30": {
+    "archivo_reporte": "bt_ss_100_M30.htm",
+    "parametros": "LoteBase=0.01 FactorLote=1.0 SLPorc=1.0 PasoPorc=0.5 MaxNiveles=8 TrailingComun=true NumeroMagico=2026070807 EsperaReintento=5 SemillaAleatoria=11111",
+    "deposito": 100.0,
+    "calidad_historial": "100%",
+    "barras": 8976.0,
+    "beneficio_neto": 1864.55,
+    "beneficio_bruto": 2519.43,
+    "perdidas_brutas": -654.88,
+    "profit_factor": 3.85,
+    "beneficio_esperado": 10.9,
+    "factor_recuperacion": 1.01,
+    "sharpe": 1.16,
+    "dd_max_balance": {
+      "valor": 256.34,
+      "pct": 91.26
+    },
+    "dd_max_equidad": {
+      "valor": 1844.24,
+      "pct": 80.12
+    },
+    "trades": 171.0,
+    "ganadoras": {
+      "valor": 78.0,
+      "pct": 45.61
+    },
+    "perdedoras": {
+      "valor": 93.0,
+      "pct": 54.39
+    }
+  },
+  "ss_100_M5": {
+    "archivo_reporte": "bt_ss_100_M5.htm",
+    "parametros": "LoteBase=0.01 FactorLote=1.0 SLPorc=1.0 PasoPorc=0.5 MaxNiveles=8 TrailingComun=true NumeroMagico=2026070807 EsperaReintento=5 SemillaAleatoria=11111",
+    "deposito": 100.0,
+    "calidad_historial": "100%",
+    "barras": 53852.0,
+    "beneficio_neto": 1864.55,
+    "beneficio_bruto": 2519.43,
+    "perdidas_brutas": -654.88,
+    "profit_factor": 3.85,
+    "beneficio_esperado": 10.9,
+    "factor_recuperacion": 1.01,
+    "sharpe": 1.2,
+    "dd_max_balance": {
+      "valor": 256.34,
+      "pct": 91.26
+    },
+    "dd_max_equidad": {
+      "valor": 1844.24,
+      "pct": 80.12
+    },
+    "trades": 171.0,
+    "ganadoras": {
+      "valor": 78.0,
+      "pct": 45.61
+    },
+    "perdedoras": {
+      "valor": 93.0,
+      "pct": 54.39
+    }
+  },
+  "ss_5000_H1": {
+    "archivo_reporte": "bt_ss_5000_H1.htm",
+    "parametros": "LoteBase=0.01 FactorLote=1.0 SLPorc=1.0 PasoPorc=0.5 MaxNiveles=8 TrailingComun=true NumeroMagico=2026070807 EsperaReintento=5 SemillaAleatoria=11111",
+    "deposito": 5000.0,
+    "calidad_historial": "100%",
+    "barras": 4488.0,
+    "beneficio_neto": 1864.55,
+    "beneficio_bruto": 2519.43,
+    "perdidas_brutas": -654.88,
+    "profit_factor": 3.85,
+    "beneficio_esperado": 10.9,
+    "factor_recuperacion": 1.01,
+    "sharpe": 1.3,
+    "dd_max_balance": {
+      "valor": 256.34,
+      "pct": 4.95
+    },
+    "dd_max_equidad": {
+      "valor": 1844.24,
+      "pct": 25.61
+    },
+    "trades": 171.0,
+    "ganadoras": {
+      "valor": 78.0,
+      "pct": 45.61
+    },
+    "perdedoras": {
+      "valor": 93.0,
+      "pct": 54.39
+    }
+  },
+  "ss_5000_H4": {
+    "archivo_reporte": "bt_ss_5000_H4.htm",
+    "parametros": "LoteBase=0.01 FactorLote=1.0 SLPorc=1.0 PasoPorc=0.5 MaxNiveles=8 TrailingComun=true NumeroMagico=2026070807 EsperaReintento=5 SemillaAleatoria=11111",
+    "deposito": 5000.0,
+    "calidad_historial": "100%",
+    "barras": 1122.0,
+    "beneficio_neto": 1864.55,
+    "beneficio_bruto": 2519.43,
+    "perdidas_brutas": -654.88,
+    "profit_factor": 3.85,
+    "beneficio_esperado": 10.9,
+    "factor_recuperacion": 1.01,
+    "sharpe": 1.33,
+    "dd_max_balance": {
+      "valor": 256.34,
+      "pct": 4.95
+    },
+    "dd_max_equidad": {
+      "valor": 1844.24,
+      "pct": 25.61
+    },
+    "trades": 171.0,
+    "ganadoras": {
+      "valor": 78.0,
+      "pct": 45.61
+    },
+    "perdedoras": {
+      "valor": 93.0,
+      "pct": 54.39
+    }
+  },
+  "ss_5000_M15": {
+    "archivo_reporte": "bt_ss_5000_M15.htm",
+    "parametros": "LoteBase=0.01 FactorLote=1.0 SLPorc=1.0 PasoPorc=0.5 MaxNiveles=8 TrailingComun=true NumeroMagico=2026070807 EsperaReintento=5 SemillaAleatoria=11111",
+    "deposito": 5000.0,
+    "calidad_historial": "100%",
+    "barras": 17952.0,
+    "beneficio_neto": 1864.55,
+    "beneficio_bruto": 2519.43,
+    "perdidas_brutas": -654.88,
+    "profit_factor": 3.85,
+    "beneficio_esperado": 10.9,
+    "factor_recuperacion": 1.01,
+    "sharpe": 1.25,
+    "dd_max_balance": {
+      "valor": 256.34,
+      "pct": 4.95
+    },
+    "dd_max_equidad": {
+      "valor": 1844.24,
+      "pct": 25.61
+    },
+    "trades": 171.0,
+    "ganadoras": {
+      "valor": 78.0,
+      "pct": 45.61
+    },
+    "perdedoras": {
+      "valor": 93.0,
+      "pct": 54.39
+    }
+  },
+  "ss_5000_M30": {
+    "archivo_reporte": "bt_ss_5000_M30.htm",
+    "parametros": "LoteBase=0.01 FactorLote=1.0 SLPorc=1.0 PasoPorc=0.5 MaxNiveles=8 TrailingComun=true NumeroMagico=2026070807 EsperaReintento=5 SemillaAleatoria=11111",
+    "deposito": 5000.0,
+    "calidad_historial": "100%",
+    "barras": 8976.0,
+    "beneficio_neto": 1864.55,
+    "beneficio_bruto": 2519.43,
+    "perdidas_brutas": -654.88,
+    "profit_factor": 3.85,
+    "beneficio_esperado": 10.9,
+    "factor_recuperacion": 1.01,
+    "sharpe": 1.27,
+    "dd_max_balance": {
+      "valor": 256.34,
+      "pct": 4.95
+    },
+    "dd_max_equidad": {
+      "valor": 1844.24,
+      "pct": 25.61
+    },
+    "trades": 171.0,
+    "ganadoras": {
+      "valor": 78.0,
+      "pct": 45.61
+    },
+    "perdedoras": {
+      "valor": 93.0,
+      "pct": 54.39
+    }
+  },
+  "ss_5000_M5": {
+    "archivo_reporte": "bt_ss_5000_M5.htm",
+    "parametros": "LoteBase=0.01 FactorLote=1.0 SLPorc=1.0 PasoPorc=0.5 MaxNiveles=8 TrailingComun=true NumeroMagico=2026070807 EsperaReintento=5 SemillaAleatoria=11111",
+    "deposito": 5000.0,
+    "calidad_historial": "100%",
+    "barras": 53852.0,
+    "beneficio_neto": 1864.55,
+    "beneficio_bruto": 2519.43,
+    "perdidas_brutas": -654.88,
+    "profit_factor": 3.85,
+    "beneficio_esperado": 10.9,
+    "factor_recuperacion": 1.01,
+    "sharpe": 1.26,
+    "dd_max_balance": {
+      "valor": 256.34,
+      "pct": 4.95
+    },
+    "dd_max_equidad": {
+      "valor": 1844.24,
+      "pct": 25.61
+    },
+    "trades": 171.0,
+    "ganadoras": {
+      "valor": 78.0,
+      "pct": 45.61
+    },
+    "perdedoras": {
+      "valor": 93.0,
+      "pct": 54.39
+    }
+  },
+  "ss_500_H1": {
+    "archivo_reporte": "bt_ss_500_H1.htm",
+    "parametros": "LoteBase=0.01 FactorLote=1.0 SLPorc=1.0 PasoPorc=0.5 MaxNiveles=8 TrailingComun=true NumeroMagico=2026070807 EsperaReintento=5 SemillaAleatoria=11111",
+    "deposito": 500.0,
+    "calidad_historial": "100%",
+    "barras": 4488.0,
+    "beneficio_neto": 1864.55,
+    "beneficio_bruto": 2519.43,
+    "perdidas_brutas": -654.88,
+    "profit_factor": 3.85,
+    "beneficio_esperado": 10.9,
+    "factor_recuperacion": 1.01,
+    "sharpe": 1.54,
+    "dd_max_balance": {
+      "valor": 256.34,
+      "pct": 37.65
+    },
+    "dd_max_equidad": {
+      "valor": 1844.24,
+      "pct": 68.26
+    },
+    "trades": 171.0,
+    "ganadoras": {
+      "valor": 78.0,
+      "pct": 45.61
+    },
+    "perdedoras": {
+      "valor": 93.0,
+      "pct": 54.39
+    }
+  },
+  "ss_500_H4": {
+    "archivo_reporte": "bt_ss_500_H4.htm",
+    "parametros": "LoteBase=0.01 FactorLote=1.0 SLPorc=1.0 PasoPorc=0.5 MaxNiveles=8 TrailingComun=true NumeroMagico=2026070807 EsperaReintento=5 SemillaAleatoria=11111",
+    "deposito": 500.0,
+    "calidad_historial": "100%",
+    "barras": 1122.0,
+    "beneficio_neto": 1864.55,
+    "beneficio_bruto": 2519.43,
+    "perdidas_brutas": -654.88,
+    "profit_factor": 3.85,
+    "beneficio_esperado": 10.9,
+    "factor_recuperacion": 1.01,
+    "sharpe": 1.53,
+    "dd_max_balance": {
+      "valor": 256.34,
+      "pct": 37.65
+    },
+    "dd_max_equidad": {
+      "valor": 1844.24,
+      "pct": 68.26
+    },
+    "trades": 171.0,
+    "ganadoras": {
+      "valor": 78.0,
+      "pct": 45.61
+    },
+    "perdedoras": {
+      "valor": 93.0,
+      "pct": 54.39
+    }
+  },
+  "ss_500_M15": {
+    "archivo_reporte": "bt_ss_500_M15.htm",
+    "parametros": "LoteBase=0.01 FactorLote=1.0 SLPorc=1.0 PasoPorc=0.5 MaxNiveles=8 TrailingComun=true NumeroMagico=2026070807 EsperaReintento=5 SemillaAleatoria=11111",
+    "deposito": 500.0,
+    "calidad_historial": "100%",
+    "barras": 17952.0,
+    "beneficio_neto": 1864.55,
+    "beneficio_bruto": 2519.43,
+    "perdidas_brutas": -654.88,
+    "profit_factor": 3.85,
+    "beneficio_esperado": 10.9,
+    "factor_recuperacion": 1.01,
+    "sharpe": 1.47,
+    "dd_max_balance": {
+      "valor": 256.34,
+      "pct": 37.65
+    },
+    "dd_max_equidad": {
+      "valor": 1844.24,
+      "pct": 68.26
+    },
+    "trades": 171.0,
+    "ganadoras": {
+      "valor": 78.0,
+      "pct": 45.61
+    },
+    "perdedoras": {
+      "valor": 93.0,
+      "pct": 54.39
+    }
+  },
+  "ss_500_M30": {
+    "archivo_reporte": "bt_ss_500_M30.htm",
+    "parametros": "LoteBase=0.01 FactorLote=1.0 SLPorc=1.0 PasoPorc=0.5 MaxNiveles=8 TrailingComun=true NumeroMagico=2026070807 EsperaReintento=5 SemillaAleatoria=11111",
+    "deposito": 500.0,
+    "calidad_historial": "100%",
+    "barras": 8976.0,
+    "beneficio_neto": 1864.55,
+    "beneficio_bruto": 2519.43,
+    "perdidas_brutas": -654.88,
+    "profit_factor": 3.85,
+    "beneficio_esperado": 10.9,
+    "factor_recuperacion": 1.01,
+    "sharpe": 1.51,
+    "dd_max_balance": {
+      "valor": 256.34,
+      "pct": 37.65
+    },
+    "dd_max_equidad": {
+      "valor": 1844.24,
+      "pct": 68.26
+    },
+    "trades": 171.0,
+    "ganadoras": {
+      "valor": 78.0,
+      "pct": 45.61
+    },
+    "perdedoras": {
+      "valor": 93.0,
+      "pct": 54.39
+    }
+  },
+  "ss_500_M5": {
+    "archivo_reporte": "bt_ss_500_M5.htm",
+    "parametros": "LoteBase=0.01 FactorLote=1.0 SLPorc=1.0 PasoPorc=0.5 MaxNiveles=8 TrailingComun=true NumeroMagico=2026070807 EsperaReintento=5 SemillaAleatoria=11111",
+    "deposito": 500.0,
+    "calidad_historial": "100%",
+    "barras": 53852.0,
+    "beneficio_neto": 1864.55,
+    "beneficio_bruto": 2519.43,
+    "perdidas_brutas": -654.88,
+    "profit_factor": 3.85,
+    "beneficio_esperado": 10.9,
+    "factor_recuperacion": 1.01,
+    "sharpe": 1.51,
+    "dd_max_balance": {
+      "valor": 256.34,
+      "pct": 37.65
+    },
+    "dd_max_equidad": {
+      "valor": 1844.24,
+      "pct": 68.26
+    },
+    "trades": 171.0,
+    "ganadoras": {
+      "valor": 78.0,
+      "pct": 45.61
+    },
+    "perdedoras": {
+      "valor": 93.0,
+      "pct": 54.39
+    }
+  },
+  "v2_s11111": {
+    "archivo_reporte": "bt_v2_s11111.htm",
+    "parametros": "LoteFijo=0.01 RiesgoSL_Pct=1.0 RiesgoTP_Pct=2.0 NumeroMagico=2026070802 EsperaReintento=5 SemillaAleatoria=11111",
+    "deposito": 1000.0,
+    "calidad_historial": "100%",
+    "barras": 17952.0,
+    "beneficio_neto": 40.34,
+    "beneficio_bruto": 1820.46,
+    "perdidas_brutas": -1780.12,
+    "profit_factor": 1.02,
+    "beneficio_esperado": 0.16,
+    "factor_recuperacion": 0.18,
+    "sharpe": 0.2,
+    "dd_max_balance": {
+      "valor": 202.38,
+      "pct": 17.14
+    },
+    "dd_max_equidad": {
+      "valor": 220.71,
+      "pct": 18.48
+    },
+    "trades": 254.0,
+    "ganadoras": {
+      "valor": 88.0,
+      "pct": 34.65
+    },
+    "perdedoras": {
+      "valor": 166.0,
+      "pct": 65.35
+    }
+  },
+  "v2_s22222": {
+    "archivo_reporte": "bt_v2_s22222.htm",
+    "parametros": "LoteFijo=0.01 RiesgoSL_Pct=1.0 RiesgoTP_Pct=2.0 NumeroMagico=2026070802 EsperaReintento=5 SemillaAleatoria=22222",
+    "deposito": 1000.0,
+    "calidad_historial": "100%",
+    "barras": 17952.0,
+    "beneficio_neto": -109.18,
+    "beneficio_bruto": 2016.39,
+    "perdidas_brutas": -2125.57,
+    "profit_factor": 0.95,
+    "beneficio_esperado": -0.34,
+    "factor_recuperacion": -0.33,
+    "sharpe": -0.53,
+    "dd_max_balance": {
+      "valor": 328.46,
+      "pct": 29.32
+    },
+    "dd_max_equidad": {
+      "valor": 335.67,
+      "pct": 29.85
+    },
+    "trades": 325.0,
+    "ganadoras": {
+      "valor": 106.0,
+      "pct": 32.62
+    },
+    "perdedoras": {
+      "valor": 219.0,
+      "pct": 67.38
+    }
+  },
+  "v2_s33333": {
+    "archivo_reporte": "bt_v2_s33333.htm",
+    "parametros": "LoteFijo=0.01 RiesgoSL_Pct=1.0 RiesgoTP_Pct=2.0 NumeroMagico=2026070802 EsperaReintento=5 SemillaAleatoria=33333",
+    "deposito": 1000.0,
+    "calidad_historial": "100%",
+    "barras": 17952.0,
+    "beneficio_neto": 33.74,
+    "beneficio_bruto": 1914.26,
+    "perdidas_brutas": -1880.52,
+    "profit_factor": 1.02,
+    "beneficio_esperado": 0.12,
+    "factor_recuperacion": 0.14,
+    "sharpe": 0.16,
+    "dd_max_balance": {
+      "valor": 222.63,
+      "pct": 18.82
+    },
+    "dd_max_equidad": {
+      "valor": 235.64,
+      "pct": 19.8
+    },
+    "trades": 279.0,
+    "ganadoras": {
+      "valor": 96.0,
+      "pct": 34.41
+    },
+    "perdedoras": {
+      "valor": 183.0,
+      "pct": 65.59
+    }
+  },
+  "v3_s11111": {
+    "archivo_reporte": "bt_v3_s11111.htm",
+    "parametros": "LoteFijo=0.01 RiesgoSL_Pct=1.0 RiesgoTP_Pct=2.0 ATRPeriodo=14 ATRMultiplo=2.0 MejoraMinPuntos=100 NumeroMagico=2026070803 EsperaReintento=5 SemillaAleatoria=11111",
+    "deposito": 1000.0,
+    "calidad_historial": "100%",
+    "barras": 17952.0,
+    "beneficio_neto": -390.4,
+    "beneficio_bruto": 4102.36,
+    "perdidas_brutas": -4492.76,
+    "profit_factor": 0.91,
+    "beneficio_esperado": -0.16,
+    "factor_recuperacion": -0.88,
+    "sharpe": -1.69,
+    "dd_max_balance": {
+      "valor": 439.07,
+      "pct": 43.16
+    },
+    "dd_max_equidad": {
+      "valor": 443.36,
+      "pct": 43.45
+    },
+    "trades": 2462.0,
+    "ganadoras": {
+      "valor": 882.0,
+      "pct": 35.82
+    },
+    "perdedoras": {
+      "valor": 1580.0,
+      "pct": 64.18
+    }
+  },
+  "v3_s22222": {
+    "archivo_reporte": "bt_v3_s22222.htm",
+    "parametros": "LoteFijo=0.01 RiesgoSL_Pct=1.0 RiesgoTP_Pct=2.0 ATRPeriodo=14 ATRMultiplo=2.0 MejoraMinPuntos=100 NumeroMagico=2026070803 EsperaReintento=5 SemillaAleatoria=22222",
+    "deposito": 1000.0,
+    "calidad_historial": "100%",
+    "barras": 17952.0,
+    "beneficio_neto": -482.67,
+    "beneficio_bruto": 4246.26,
+    "perdidas_brutas": -4728.93,
+    "profit_factor": 0.9,
+    "beneficio_esperado": -0.19,
+    "factor_recuperacion": -0.73,
+    "sharpe": -1.87,
+    "dd_max_balance": {
+      "valor": 660.02,
+      "pct": 63.21
+    },
+    "dd_max_equidad": {
+      "valor": 664.92,
+      "pct": 63.5
+    },
+    "trades": 2566.0,
+    "ganadoras": {
+      "valor": 912.0,
+      "pct": 35.54
+    },
+    "perdedoras": {
+      "valor": 1654.0,
+      "pct": 64.46
+    }
+  },
+  "v3_s33333": {
+    "archivo_reporte": "bt_v3_s33333.htm",
+    "parametros": "LoteFijo=0.01 RiesgoSL_Pct=1.0 RiesgoTP_Pct=2.0 ATRPeriodo=14 ATRMultiplo=2.0 MejoraMinPuntos=100 NumeroMagico=2026070803 EsperaReintento=5 SemillaAleatoria=33333",
+    "deposito": 1000.0,
+    "calidad_historial": "100%",
+    "barras": 17952.0,
+    "beneficio_neto": -160.35,
+    "beneficio_bruto": 3965.42,
+    "perdidas_brutas": -4125.77,
+    "profit_factor": 0.96,
+    "beneficio_esperado": -0.07,
+    "factor_recuperacion": -0.47,
+    "sharpe": -0.72,
+    "dd_max_balance": {
+      "valor": 334.14,
+      "pct": 32.57
+    },
+    "dd_max_equidad": {
+      "valor": 342.99,
+      "pct": 33.14
+    },
+    "trades": 2349.0,
+    "ganadoras": {
+      "valor": 879.0,
+      "pct": 37.42
+    },
+    "perdedoras": {
+      "valor": 1470.0,
+      "pct": 62.58
+    }
+  },
+  "v5_atr_s11111": {
+    "archivo_reporte": "bt_v5_atr_s11111.htm",
+    "parametros": "ModoTrailing=0 LoteFijo=0.01 RiesgoSL_Pct=1.0 RiesgoTP_Pct=0.0 ATRPeriodo=14 ATRMultiplo=2.0 TrailPorc=1.0 MaxMinVelas=20 BreakevenPorc=0.5 EscalonPorc=0.5 MejoraMinPuntos=100 NumeroMagico=2026070805 EsperaReintento=5 SemillaAleatoria=11111",
+    "deposito": 1000.0,
+    "calidad_historial": "100%",
+    "barras": 17952.0,
+    "beneficio_neto": -329.94,
+    "beneficio_bruto": 3588.01,
+    "perdidas_brutas": -3917.95,
+    "profit_factor": 0.92,
+    "beneficio_esperado": -0.14,
+    "factor_recuperacion": -0.81,
+    "sharpe": -1.39,
+    "dd_max_balance": {
+      "valor": 403.77,
+      "pct": 39.69
+    },
+    "dd_max_equidad": {
+      "valor": 407.42,
+      "pct": 39.93
+    },
+    "trades": 2294.0,
+    "ganadoras": {
+      "valor": 852.0,
+      "pct": 37.14
+    },
+    "perdedoras": {
+      "valor": 1442.0,
+      "pct": 62.86
+    }
+  },
+  "v5_atr_s22222": {
+    "archivo_reporte": "bt_v5_atr_s22222.htm",
+    "parametros": "ModoTrailing=0 LoteFijo=0.01 RiesgoSL_Pct=1.0 RiesgoTP_Pct=0.0 ATRPeriodo=14 ATRMultiplo=2.0 TrailPorc=1.0 MaxMinVelas=20 BreakevenPorc=0.5 EscalonPorc=0.5 MejoraMinPuntos=100 NumeroMagico=2026070805 EsperaReintento=5 SemillaAleatoria=22222",
+    "deposito": 1000.0,
+    "calidad_historial": "100%",
+    "barras": 17952.0,
+    "beneficio_neto": -232.5,
+    "beneficio_bruto": 3679.94,
+    "perdidas_brutas": -3912.44,
+    "profit_factor": 0.94,
+    "beneficio_esperado": -0.1,
+    "factor_recuperacion": -0.52,
+    "sharpe": -0.94,
+    "dd_max_balance": {
+      "valor": 440.7,
+      "pct": 43.06
+    },
+    "dd_max_equidad": {
+      "valor": 444.42,
+      "pct": 43.3
+    },
+    "trades": 2253.0,
+    "ganadoras": {
+      "valor": 816.0,
+      "pct": 36.22
+    },
+    "perdedoras": {
+      "valor": 1437.0,
+      "pct": 63.78
+    }
+  },
+  "v5_esc_s11111": {
+    "archivo_reporte": "bt_v5_esc_s11111.htm",
+    "parametros": "ModoTrailing=3 LoteFijo=0.01 RiesgoSL_Pct=1.0 RiesgoTP_Pct=0.0 ATRPeriodo=14 ATRMultiplo=2.0 TrailPorc=1.0 MaxMinVelas=20 BreakevenPorc=0.5 EscalonPorc=0.5 MejoraMinPuntos=100 NumeroMagico=2026070805 EsperaReintento=5 SemillaAleatoria=11111",
+    "deposito": 1000.0,
+    "calidad_historial": "100%",
+    "barras": 17952.0,
+    "beneficio_neto": 141.83,
+    "beneficio_bruto": 2780.76,
+    "perdidas_brutas": -2638.93,
+    "profit_factor": 1.05,
+    "beneficio_esperado": 0.14,
+    "factor_recuperacion": 1.08,
+    "sharpe": 0.65,
+    "dd_max_balance": {
+      "valor": 125.05,
+      "pct": 11.2
+    },
+    "dd_max_equidad": {
+      "valor": 130.81,
+      "pct": 11.67
+    },
+    "trades": 1050.0,
+    "ganadoras": {
+      "valor": 783.0,
+      "pct": 74.57
+    },
+    "perdedoras": {
+      "valor": 267.0,
+      "pct": 25.43
+    }
+  },
+  "v5_esc_s22222": {
+    "archivo_reporte": "bt_v5_esc_s22222.htm",
+    "parametros": "ModoTrailing=3 LoteFijo=0.01 RiesgoSL_Pct=1.0 RiesgoTP_Pct=0.0 ATRPeriodo=14 ATRMultiplo=2.0 TrailPorc=1.0 MaxMinVelas=20 BreakevenPorc=0.5 EscalonPorc=0.5 MejoraMinPuntos=100 NumeroMagico=2026070805 EsperaReintento=5 SemillaAleatoria=22222",
+    "deposito": 1000.0,
+    "calidad_historial": "100%",
+    "barras": 17952.0,
+    "beneficio_neto": 179.0,
+    "beneficio_bruto": 2622.79,
+    "perdidas_brutas": -2443.79,
+    "profit_factor": 1.07,
+    "beneficio_esperado": 0.19,
+    "factor_recuperacion": 0.56,
+    "sharpe": 0.93,
+    "dd_max_balance": {
+      "valor": 308.2,
+      "pct": 22.7
+    },
+    "dd_max_equidad": {
+      "valor": 320.84,
+      "pct": 23.56
+    },
+    "trades": 936.0,
+    "ganadoras": {
+      "valor": 714.0,
+      "pct": 76.28
+    },
+    "perdedoras": {
+      "valor": 222.0,
+      "pct": 23.72
+    }
+  },
+  "v5_maxmin_s11111": {
+    "archivo_reporte": "bt_v5_maxmin_s11111.htm",
+    "parametros": "ModoTrailing=2 LoteFijo=0.01 RiesgoSL_Pct=1.0 RiesgoTP_Pct=0.0 ATRPeriodo=14 ATRMultiplo=2.0 TrailPorc=1.0 MaxMinVelas=20 BreakevenPorc=0.5 EscalonPorc=0.5 MejoraMinPuntos=100 NumeroMagico=2026070805 EsperaReintento=5 SemillaAleatoria=11111",
+    "deposito": 1000.0,
+    "calidad_historial": "100%",
+    "barras": 17952.0,
+    "beneficio_neto": -127.99,
+    "beneficio_bruto": 1973.51,
+    "perdidas_brutas": -2101.5,
+    "profit_factor": 0.94,
+    "beneficio_esperado": -0.12,
+    "factor_recuperacion": -0.57,
+    "sharpe": -0.64,
+    "dd_max_balance": {
+      "valor": 210.72,
+      "pct": 19.89
+    },
+    "dd_max_equidad": {
+      "valor": 225.43,
+      "pct": 21.05
+    },
+    "trades": 1112.0,
+    "ganadoras": {
+      "valor": 557.0,
+      "pct": 50.09
+    },
+    "perdedoras": {
+      "valor": 555.0,
+      "pct": 49.91
+    }
+  },
+  "v5_maxmin_s22222": {
+    "archivo_reporte": "bt_v5_maxmin_s22222.htm",
+    "parametros": "ModoTrailing=2 LoteFijo=0.01 RiesgoSL_Pct=1.0 RiesgoTP_Pct=0.0 ATRPeriodo=14 ATRMultiplo=2.0 TrailPorc=1.0 MaxMinVelas=20 BreakevenPorc=0.5 EscalonPorc=0.5 MejoraMinPuntos=100 NumeroMagico=2026070805 EsperaReintento=5 SemillaAleatoria=22222",
+    "deposito": 1000.0,
+    "calidad_historial": "100%",
+    "barras": 17952.0,
+    "beneficio_neto": -226.04,
+    "beneficio_bruto": 1959.63,
+    "perdidas_brutas": -2185.67,
+    "profit_factor": 0.9,
+    "beneficio_esperado": -0.21,
+    "factor_recuperacion": -0.68,
+    "sharpe": -1.19,
+    "dd_max_balance": {
+      "valor": 327.24,
+      "pct": 29.88
+    },
+    "dd_max_equidad": {
+      "valor": 334.27,
+      "pct": 30.35
+    },
+    "trades": 1100.0,
+    "ganadoras": {
+      "valor": 531.0,
+      "pct": 48.27
+    },
+    "perdedoras": {
+      "valor": 569.0,
+      "pct": 51.73
+    }
+  },
+  "v5_pct_s11111": {
+    "archivo_reporte": "bt_v5_pct_s11111.htm",
+    "parametros": "ModoTrailing=1 LoteFijo=0.01 RiesgoSL_Pct=1.0 RiesgoTP_Pct=0.0 ATRPeriodo=14 ATRMultiplo=2.0 TrailPorc=1.0 MaxMinVelas=20 BreakevenPorc=0.5 EscalonPorc=0.5 MejoraMinPuntos=100 NumeroMagico=2026070805 EsperaReintento=5 SemillaAleatoria=11111",
+    "deposito": 1000.0,
+    "calidad_historial": "100%",
+    "barras": 17952.0,
+    "beneficio_neto": -217.97,
+    "beneficio_bruto": 3024.68,
+    "perdidas_brutas": -3242.65,
+    "profit_factor": 0.93,
+    "beneficio_esperado": -0.18,
+    "factor_recuperacion": -0.48,
+    "sharpe": -0.97,
+    "dd_max_balance": {
+      "valor": 443.11,
+      "pct": 41.84
+    },
+    "dd_max_equidad": {
+      "valor": 456.33,
+      "pct": 42.78
+    },
+    "trades": 1183.0,
+    "ganadoras": {
+      "valor": 426.0,
+      "pct": 36.01
+    },
+    "perdedoras": {
+      "valor": 757.0,
+      "pct": 63.99
+    }
+  },
+  "v5_pct_s22222": {
+    "archivo_reporte": "bt_v5_pct_s22222.htm",
+    "parametros": "ModoTrailing=1 LoteFijo=0.01 RiesgoSL_Pct=1.0 RiesgoTP_Pct=0.0 ATRPeriodo=14 ATRMultiplo=2.0 TrailPorc=1.0 MaxMinVelas=20 BreakevenPorc=0.5 EscalonPorc=0.5 MejoraMinPuntos=100 NumeroMagico=2026070805 EsperaReintento=5 SemillaAleatoria=22222",
+    "deposito": 1000.0,
+    "calidad_historial": "100%",
+    "barras": 17952.0,
+    "beneficio_neto": -716.96,
+    "beneficio_bruto": 2917.18,
+    "perdidas_brutas": -3634.14,
+    "profit_factor": 0.8,
+    "beneficio_esperado": -0.51,
+    "factor_recuperacion": -0.9,
+    "sharpe": -2.79,
+    "dd_max_balance": {
+      "valor": 788.26,
+      "pct": 76.64
+    },
+    "dd_max_equidad": {
+      "valor": 798.91,
+      "pct": 77.0
+    },
+    "trades": 1410.0,
+    "ganadoras": {
+      "valor": 420.0,
+      "pct": 29.79
+    },
+    "perdedoras": {
+      "valor": 990.0,
+      "pct": 70.21
+    }
+  },
+  "v6_s11111": {
+    "archivo_reporte": "bt_v6_s11111.htm",
+    "parametros": "LoteFijo=0.01 SLPorc=1.0 PasoPorc=0.5 MaxNiveles=3 NumeroMagico=2026070806 EsperaReintento=5 SemillaAleatoria=11111",
+    "deposito": 1000.0,
+    "calidad_historial": "100%",
+    "barras": 17952.0,
+    "beneficio_neto": 538.2,
+    "beneficio_bruto": 626.98,
+    "perdidas_brutas": -88.78,
+    "profit_factor": 7.06,
+    "beneficio_esperado": 44.85,
+    "factor_recuperacion": 0.78,
+    "sharpe": 0.24,
+    "dd_max_balance": {
+      "valor": 88.78,
+      "pct": 8.88
+    },
+    "dd_max_equidad": {
+      "valor": 691.59,
+      "pct": 41.55
+    },
+    "trades": 12.0,
+    "ganadoras": {
+      "valor": 3.0,
+      "pct": 25.0
+    },
+    "perdedoras": {
+      "valor": 9.0,
+      "pct": 75.0
+    }
+  },
+  "v6_s22222": {
+    "archivo_reporte": "bt_v6_s22222.htm",
+    "parametros": "LoteFijo=0.01 SLPorc=1.0 PasoPorc=0.5 MaxNiveles=3 NumeroMagico=2026070806 EsperaReintento=5 SemillaAleatoria=22222",
+    "deposito": 1000.0,
+    "calidad_historial": "100%",
+    "barras": 17952.0,
+    "beneficio_neto": 379.96,
+    "beneficio_bruto": 593.79,
+    "perdidas_brutas": -213.83,
+    "profit_factor": 2.78,
+    "beneficio_esperado": 14.07,
+    "factor_recuperacion": 0.55,
+    "sharpe": 0.57,
+    "dd_max_balance": {
+      "valor": 213.83,
+      "pct": 21.38
+    },
+    "dd_max_equidad": {
+      "valor": 691.59,
+      "pct": 45.91
+    },
+    "trades": 27.0,
+    "ganadoras": {
+      "valor": 3.0,
+      "pct": 11.11
+    },
+    "perdedoras": {
+      "valor": 24.0,
+      "pct": 88.89
+    }
+  },
+  "v6_s33333": {
+    "archivo_reporte": "bt_v6_s33333.htm",
+    "parametros": "LoteFijo=0.01 SLPorc=1.0 PasoPorc=0.5 MaxNiveles=3 NumeroMagico=2026070806 EsperaReintento=5 SemillaAleatoria=33333",
+    "deposito": 1000.0,
+    "calidad_historial": "100%",
+    "barras": 17952.0,
+    "beneficio_neto": 462.85,
+    "beneficio_bruto": 657.62,
+    "perdidas_brutas": -194.77,
+    "profit_factor": 3.38,
+    "beneficio_esperado": 19.29,
+    "factor_recuperacion": 0.67,
+    "sharpe": 0.67,
+    "dd_max_balance": {
+      "valor": 194.77,
+      "pct": 19.48
+    },
+    "dd_max_equidad": {
+      "valor": 691.59,
+      "pct": 43.52
+    },
+    "trades": 24.0,
+    "ganadoras": {
+      "valor": 3.0,
+      "pct": 12.5
+    },
+    "perdedoras": {
+      "valor": 21.0,
+      "pct": 87.5
+    }
+  },
+  "v7_n3_p05_f10_comun": {
+    "archivo_reporte": "bt_v7_n3_p05_f10_comun.htm",
+    "parametros": "LoteBase=0.01 FactorLote=1.0 SLPorc=1.0 PasoPorc=0.5 MaxNiveles=3 TrailingComun=true NumeroMagico=2026070807 EsperaReintento=5 SemillaAleatoria=11111",
+    "deposito": 1000.0,
+    "calidad_historial": "100%",
+    "barras": 17952.0,
+    "beneficio_neto": 549.68,
+    "beneficio_bruto": 665.04,
+    "perdidas_brutas": -115.36,
+    "profit_factor": 5.76,
+    "beneficio_esperado": 22.9,
+    "factor_recuperacion": 0.79,
+    "sharpe": 0.82,
+    "dd_max_balance": {
+      "valor": 107.94,
+      "pct": 10.79
+    },
+    "dd_max_equidad": {
+      "valor": 691.59,
+      "pct": 41.26
+    },
+    "trades": 24.0,
+    "ganadoras": {
+      "valor": 7.0,
+      "pct": 29.17
+    },
+    "perdedoras": {
+      "valor": 17.0,
+      "pct": 70.83
+    }
+  },
+  "v7_n5_p05_f07_comun": {
+    "archivo_reporte": "bt_v7_n5_p05_f07_comun.htm",
+    "parametros": "LoteBase=0.01 FactorLote=0.7 SLPorc=1.0 PasoPorc=0.5 MaxNiveles=5 TrailingComun=true NumeroMagico=2026070807 EsperaReintento=5 SemillaAleatoria=11111",
+    "deposito": 1000.0,
+    "calidad_historial": "100%",
+    "barras": 17952.0,
+    "beneficio_neto": 1196.35,
+    "beneficio_bruto": 1490.44,
+    "perdidas_brutas": -294.09,
+    "profit_factor": 5.07,
+    "beneficio_esperado": 18.69,
+    "factor_recuperacion": 1.04,
+    "sharpe": 1.2,
+    "dd_max_balance": {
+      "valor": 220.15,
+      "pct": 21.67
+    },
+    "dd_max_equidad": {
+      "valor": 1152.65,
+      "pct": 47.89
+    },
+    "trades": 64.0,
+    "ganadoras": {
+      "valor": 23.0,
+      "pct": 35.94
+    },
+    "perdedoras": {
+      "valor": 41.0,
+      "pct": 64.06
+    }
+  },
+  "v7_n5_p05_f10_comun": {
+    "archivo_reporte": "bt_v7_n5_p05_f10_comun.htm",
+    "parametros": "LoteBase=0.01 FactorLote=1.0 SLPorc=1.0 PasoPorc=0.5 MaxNiveles=5 TrailingComun=true NumeroMagico=2026070807 EsperaReintento=5 SemillaAleatoria=11111",
+    "deposito": 1000.0,
+    "calidad_historial": "100%",
+    "barras": 17952.0,
+    "beneficio_neto": 1196.35,
+    "beneficio_bruto": 1490.44,
+    "perdidas_brutas": -294.09,
+    "profit_factor": 5.07,
+    "beneficio_esperado": 18.69,
+    "factor_recuperacion": 1.04,
+    "sharpe": 1.2,
+    "dd_max_balance": {
+      "valor": 220.15,
+      "pct": 21.67
+    },
+    "dd_max_equidad": {
+      "valor": 1152.65,
+      "pct": 47.89
+    },
+    "trades": 64.0,
+    "ganadoras": {
+      "valor": 23.0,
+      "pct": 35.94
+    },
+    "perdedoras": {
+      "valor": 41.0,
+      "pct": 64.06
+    }
+  },
+  "v7_n5_p05_f10_solo": {
+    "archivo_reporte": "bt_v7_n5_p05_f10_solo.htm",
+    "parametros": "LoteBase=0.01 FactorLote=1.0 SLPorc=1.0 PasoPorc=0.5 MaxNiveles=5 TrailingComun=false NumeroMagico=2026070807 EsperaReintento=5 SemillaAleatoria=11111",
+    "deposito": 1000.0,
+    "calidad_historial": "100%",
+    "barras": 17952.0,
+    "beneficio_neto": 767.45,
+    "beneficio_bruto": 1021.28,
+    "perdidas_brutas": -253.83,
+    "profit_factor": 4.02,
+    "beneficio_esperado": 23.98,
+    "factor_recuperacion": 0.67,
+    "sharpe": 0.71,
+    "dd_max_balance": {
+      "valor": 253.83,
+      "pct": 25.38
+    },
+    "dd_max_equidad": {
+      "valor": 1152.65,
+      "pct": 58.27
+    },
+    "trades": 32.0,
+    "ganadoras": {
+      "valor": 5.0,
+      "pct": 15.62
+    },
+    "perdedoras": {
+      "valor": 27.0,
+      "pct": 84.38
+    }
+  },
+  "v7_n5_p10_f10_comun": {
+    "archivo_reporte": "bt_v7_n5_p10_f10_comun.htm",
+    "parametros": "LoteBase=0.01 FactorLote=1.0 SLPorc=1.0 PasoPorc=1.0 MaxNiveles=5 TrailingComun=true NumeroMagico=2026070807 EsperaReintento=5 SemillaAleatoria=11111",
+    "deposito": 1000.0,
+    "calidad_historial": "100%",
+    "barras": 17952.0,
+    "beneficio_neto": -1002.93,
+    "beneficio_bruto": 1232.85,
+    "perdidas_brutas": -2235.78,
+    "profit_factor": 0.55,
+    "beneficio_esperado": -1.97,
+    "factor_recuperacion": -0.89,
+    "sharpe": -5.0,
+    "dd_max_balance": {
+      "valor": 1094.42,
+      "pct": 100.27
+    },
+    "dd_max_equidad": {
+      "valor": 1123.17,
+      "pct": 100.26
+    },
+    "trades": 509.0,
+    "ganadoras": {
+      "valor": 201.0,
+      "pct": 39.49
+    },
+    "perdedoras": {
+      "valor": 308.0,
+      "pct": 60.51
+    }
+  },
+  "v7_n8_p05_f10_comun": {
+    "archivo_reporte": "bt_v7_n8_p05_f10_comun.htm",
+    "parametros": "LoteBase=0.01 FactorLote=1.0 SLPorc=1.0 PasoPorc=0.5 MaxNiveles=8 TrailingComun=true NumeroMagico=2026070807 EsperaReintento=5 SemillaAleatoria=11111",
+    "deposito": 1000.0,
+    "calidad_historial": "100%",
+    "barras": 17952.0,
+    "beneficio_neto": 1864.55,
+    "beneficio_bruto": 2519.43,
+    "perdidas_brutas": -654.88,
+    "profit_factor": 3.85,
+    "beneficio_esperado": 10.9,
+    "factor_recuperacion": 1.01,
+    "sharpe": 1.41,
+    "dd_max_balance": {
+      "valor": 256.34,
+      "pct": 21.71
+    },
+    "dd_max_equidad": {
+      "valor": 1844.24,
+      "pct": 57.6
+    },
+    "trades": 171.0,
+    "ganadoras": {
+      "valor": 78.0,
+      "pct": 45.61
+    },
+    "perdedoras": {
+      "valor": 93.0,
+      "pct": 54.39
+    }
+  },
+  "v7_n8_p05_f10_comun_s2": {
+    "archivo_reporte": "bt_v7_n8_p05_f10_comun_s2.htm",
+    "parametros": "LoteBase=0.01 FactorLote=1.0 SLPorc=1.0 PasoPorc=0.5 MaxNiveles=8 TrailingComun=true NumeroMagico=2026070807 EsperaReintento=5 SemillaAleatoria=22222",
+    "deposito": 1000.0,
+    "calidad_historial": "100%",
+    "barras": 17952.0,
+    "beneficio_neto": 1805.95,
+    "beneficio_bruto": 2539.35,
+    "perdidas_brutas": -733.4,
+    "profit_factor": 3.46,
+    "beneficio_esperado": 10.26,
+    "factor_recuperacion": 0.98,
+    "sharpe": 1.34,
+    "dd_max_balance": {
+      "valor": 174.88,
+      "pct": 16.98
+    },
+    "dd_max_equidad": {
+      "valor": 1844.24,
+      "pct": 58.67
+    },
+    "trades": 176.0,
+    "ganadoras": {
+      "valor": 73.0,
+      "pct": 41.48
+    },
+    "perdedoras": {
+      "valor": 103.0,
+      "pct": 58.52
+    }
+  },
+  "v7_n8_p05_f10_comun_s3": {
+    "archivo_reporte": "bt_v7_n8_p05_f10_comun_s3.htm",
+    "parametros": "LoteBase=0.01 FactorLote=1.0 SLPorc=1.0 PasoPorc=0.5 MaxNiveles=8 TrailingComun=true NumeroMagico=2026070807 EsperaReintento=5 SemillaAleatoria=33333",
+    "deposito": 1000.0,
+    "calidad_historial": "100%",
+    "barras": 17952.0,
+    "beneficio_neto": 1446.2,
+    "beneficio_bruto": 2322.29,
+    "perdidas_brutas": -876.09,
+    "profit_factor": 2.65,
+    "beneficio_esperado": 7.65,
+    "factor_recuperacion": 0.78,
+    "sharpe": 0.95,
+    "dd_max_balance": {
+      "valor": 437.85,
+      "pct": 42.51
+    },
+    "dd_max_equidad": {
+      "valor": 1844.24,
+      "pct": 66.26
+    },
+    "trades": 189.0,
+    "ganadoras": {
+      "valor": 64.0,
+      "pct": 33.86
+    },
+    "perdedoras": {
+      "valor": 125.0,
+      "pct": 66.14
+    }
+  }
+}
