@@ -1,0 +1,257 @@
+{
+  "titulo": "Sweet spot del modelo ganador (v7: 8 niveles, paso 0.5%, trailing comun)",
+  "subtitulo": "BTCUSD, 2026.01.01-2026.07.07, semilla 11111, lote fijo 0.01",
+  "corridas": [
+    {
+      "tag": "ss_100_M5",
+      "deposito": 100.0,
+      "periodo": "M5",
+      "neto": 1864.55,
+      "neto_pct": 1864.55,
+      "profit_factor": 3.85,
+      "dd_max_pct": 91.26,
+      "trades": 171.0
+    },
+    {
+      "tag": "ss_100_M15",
+      "deposito": 100.0,
+      "periodo": "M15",
+      "neto": 1864.55,
+      "neto_pct": 1864.55,
+      "profit_factor": 3.85,
+      "dd_max_pct": 91.26,
+      "trades": 171.0
+    },
+    {
+      "tag": "ss_100_M30",
+      "deposito": 100.0,
+      "periodo": "M30",
+      "neto": 1864.55,
+      "neto_pct": 1864.55,
+      "profit_factor": 3.85,
+      "dd_max_pct": 91.26,
+      "trades": 171.0
+    },
+    {
+      "tag": "ss_100_H1",
+      "deposito": 100.0,
+      "periodo": "H1",
+      "neto": 1864.55,
+      "neto_pct": 1864.55,
+      "profit_factor": 3.85,
+      "dd_max_pct": 91.26,
+      "trades": 171.0
+    },
+    {
+      "tag": "ss_100_H4",
+      "deposito": 100.0,
+      "periodo": "H4",
+      "neto": 1864.55,
+      "neto_pct": 1864.55,
+      "profit_factor": 3.85,
+      "dd_max_pct": 91.26,
+      "trades": 171.0
+    },
+    {
+      "tag": "ss_500_M5",
+      "deposito": 500.0,
+      "periodo": "M5",
+      "neto": 1864.55,
+      "neto_pct": 372.91,
+      "profit_factor": 3.85,
+      "dd_max_pct": 37.65,
+      "trades": 171.0
+    },
+    {
+      "tag": "ss_500_M15",
+      "deposito": 500.0,
+      "periodo": "M15",
+      "neto": 1864.55,
+      "neto_pct": 372.91,
+      "profit_factor": 3.85,
+      "dd_max_pct": 37.65,
+      "trades": 171.0
+    },
+    {
+      "tag": "ss_500_M30",
+      "deposito": 500.0,
+      "periodo": "M30",
+      "neto": 1864.55,
+      "neto_pct": 372.91,
+      "profit_factor": 3.85,
+      "dd_max_pct": 37.65,
+      "trades": 171.0
+    },
+    {
+      "tag": "ss_500_H1",
+      "deposito": 500.0,
+      "periodo": "H1",
+      "neto": 1864.55,
+      "neto_pct": 372.91,
+      "profit_factor": 3.85,
+      "dd_max_pct": 37.65,
+      "trades": 171.0
+    },
+    {
+      "tag": "ss_500_H4",
+      "deposito": 500.0,
+      "periodo": "H4",
+      "neto": 1864.55,
+      "neto_pct": 372.91,
+      "profit_factor": 3.85,
+      "dd_max_pct": 37.65,
+      "trades": 171.0
+    },
+    {
+      "tag": "ss_1000_M5",
+      "deposito": 1000.0,
+      "periodo": "M5",
+      "neto": 1864.55,
+      "neto_pct": 186.45,
+      "profit_factor": 3.85,
+      "dd_max_pct": 21.71,
+      "trades": 171.0
+    },
+    {
+      "tag": "ss_1000_M15",
+      "deposito": 1000.0,
+      "periodo": "M15",
+      "neto": 1864.55,
+      "neto_pct": 186.45,
+      "profit_factor": 3.85,
+      "dd_max_pct": 21.71,
+      "trades": 171.0
+    },
+    {
+      "tag": "ss_1000_M30",
+      "deposito": 1000.0,
+      "periodo": "M30",
+      "neto": 1864.55,
+      "neto_pct": 186.45,
+      "profit_factor": 3.85,
+      "dd_max_pct": 21.71,
+      "trades": 171.0
+    },
+    {
+      "tag": "ss_1000_H1",
+      "deposito": 1000.0,
+      "periodo": "H1",
+      "neto": 1864.55,
+      "neto_pct": 186.45,
+      "profit_factor": 3.85,
+      "dd_max_pct": 21.71,
+      "trades": 171.0
+    },
+    {
+      "tag": "ss_1000_H4",
+      "deposito": 1000.0,
+      "periodo": "H4",
+      "neto": 1864.55,
+      "neto_pct": 186.45,
+      "profit_factor": 3.85,
+      "dd_max_pct": 21.71,
+      "trades": 171.0
+    },
+    {
+      "tag": "ss_5000_M5",
+      "deposito": 5000.0,
+      "periodo": "M5",
+      "neto": 1864.55,
+      "neto_pct": 37.29,
+      "profit_factor": 3.85,
+      "dd_max_pct": 4.95,
+      "trades": 171.0
+    },
+    {
+      "tag": "ss_5000_M15",
+      "deposito": 5000.0,
+      "periodo": "M15",
+      "neto": 1864.55,
+      "neto_pct": 37.29,
+      "profit_factor": 3.85,
+      "dd_max_pct": 4.95,
+      "trades": 171.0
+    },
+    {
+      "tag": "ss_5000_M30",
+      "deposito": 5000.0,
+      "periodo": "M30",
+      "neto": 1864.55,
+      "neto_pct": 37.29,
+      "profit_factor": 3.85,
+      "dd_max_pct": 4.95,
+      "trades": 171.0
+    },
+    {
+      "tag": "ss_5000_H1",
+      "deposito": 5000.0,
+      "periodo": "H1",
+      "neto": 1864.55,
+      "neto_pct": 37.29,
+      "profit_factor": 3.85,
+      "dd_max_pct": 4.95,
+      "trades": 171.0
+    },
+    {
+      "tag": "ss_5000_H4",
+      "deposito": 5000.0,
+      "periodo": "H4",
+      "neto": 1864.55,
+      "neto_pct": 37.29,
+      "profit_factor": 3.85,
+      "dd_max_pct": 4.95,
+      "trades": 171.0
+    },
+    {
+      "tag": "ss_10000_M5",
+      "deposito": 10000.0,
+      "periodo": "M5",
+      "neto": 1864.55,
+      "neto_pct": 18.65,
+      "profit_factor": 3.85,
+      "dd_max_pct": 2.52,
+      "trades": 171.0
+    },
+    {
+      "tag": "ss_10000_M15",
+      "deposito": 10000.0,
+      "periodo": "M15",
+      "neto": 1864.55,
+      "neto_pct": 18.65,
+      "profit_factor": 3.85,
+      "dd_max_pct": 2.52,
+      "trades": 171.0
+    },
+    {
+      "tag": "ss_10000_M30",
+      "deposito": 10000.0,
+      "periodo": "M30",
+      "neto": 1864.55,
+      "neto_pct": 18.65,
+      "profit_factor": 3.85,
+      "dd_max_pct": 2.52,
+      "trades": 171.0
+    },
+    {
+      "tag": "ss_10000_H1",
+      "deposito": 10000.0,
+      "periodo": "H1",
+      "neto": 1864.55,
+      "neto_pct": 18.65,
+      "profit_factor": 3.85,
+      "dd_max_pct": 2.52,
+      "trades": 171.0
+    },
+    {
+      "tag": "ss_10000_H4",
+      "deposito": 10000.0,
+      "periodo": "H4",
+      "neto": 1864.55,
+      "neto_pct": 18.65,
+      "profit_factor": 3.85,
+      "dd_max_pct": 2.52,
+      "trades": 171.0
+    }
+  ],
+  "conclusion": "La temporalidad NO afecta al modelo (no usa indicadores de vela: identica secuencia de trades de M5 a H4). El tamano de cuenta solo escala el riesgo porque el lote es fijo: +1.865 USD absolutos en todos los depositos. Con 100 USD es ruleta (DD 91%); con 500 USD el DD es 38%; con 1.000 USD rinde +186% con DD 22%; con 5.000+ el retorno se diluye (37% o menos) pero el DD baja de 5%. Sweet spot practico en Exness (1:200): cuenta de 1.000 a 2.000 USD, cualquier temporalidad (M15 por comodidad), escalando el lote 0.01 por cada 1.000 USD de deposito si se quiere sostener el retorno porcentual."
+}

@@ -258,10 +258,31 @@ piramidación y trailing común es, en la práctica, un seguidor de tendencia: e
 resultado puede invertirse. El objetivo del caso es didáctico —aislar el efecto de la GESTIÓN—, no venderte
 un sistema rentable. Todo se corrió en cuenta demo. Nada de esto es asesoría financiera.</div>
 
-<h2 id="descargas">Código fuente y datos</h2>
+<h2 id="descargas">Llévate la base de conocimiento a tu proyecto</h2>
+<div class="card" style="border-color:var(--pos)">
+<h3 style="margin:0 0 6px">📦 Base de conocimiento completa (ZIP, ~5 MB)</h3>
+<p style="margin:6px 0">Una carpeta lista para soltar dentro de TU proyecto: batería de bugs, plantilla MQL5
+validada, aprendizajes del entorno, metodología de backtests, los 7 EAs, los datos en JSON y los
+<b>50 reportes completos del Strategy Tester</b> con sus curvas (los adjuntos). Incluye un
+<code>CLAUDE.md</code> para que tu asistente de IA (Claude Code, Cursor...) la use como contexto
+automáticamente, y un <code>INSTRUCTIVO.md</code> paso a paso.</p>
+<p style="margin:12px 0"><a href="descargas/base_conocimiento_agente_experto.zip" download
+  style="display:inline-block;background:var(--pos);color:#fff;text-decoration:none;border-radius:8px;padding:10px 18px;font-weight:600">
+  Descargar base_conocimiento_agente_experto.zip</a></p>
+<p style="margin:6px 0"><b>Cómo usarla (resumen del instructivo):</b></p>
+<ol style="margin:6px 0">
+<li>Descarga y descomprime el ZIP.</li>
+<li>Copia la carpeta <code>base_conocimiento/</code> dentro de la carpeta de tu proyecto.</li>
+<li>Con IA: si no tienes <code>CLAUDE.md</code>, copia el del paquete a la raíz de tu proyecto;
+si ya tienes, añádele la línea <i>"Antes de escribir o depurar un EA, lee base_conocimiento/CLAUDE.md
+y docs/BUGS.md"</i>.</li>
+<li>Sin IA: sigue el orden de lectura del <code>INSTRUCTIVO.md</code> (aprendizajes → bugs → plantilla → src).</li>
+</ol>
+</div>
 <div class="card">
-<p>Todo el material está en este mismo repositorio:</p>
+<p>También puedes explorar el material suelto en este repositorio:</p>
 <ul>
+<li><code>base_conocimiento/</code> — el paquete navegable (sin los reportes; esos van en el ZIP).</li>
 <li><code>src/</code> — los 7 Expert Advisors en MQL5, comentados en español para estudiar línea a línea.</li>
 <li><code>datos/resultados.json</code> — métricas de todas las corridas · <code>datos/sweetspot.json</code> — la matriz del examen final.</li>
 <li><code>docs/BUGS.md</code> — la batería completa de bugs con detalle técnico.</li>
