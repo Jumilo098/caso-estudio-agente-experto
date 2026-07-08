@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Caso de estudio: el Agente Experto Aleatorio — Instituto Quant</title>
-<meta name="description" content="Que pasa cuando un robot entra al mercado al azar y solo cambia la gestion de riesgo. 7 versiones, 50 backtests, 14 bugs documentados.">
+<meta name="description" content="Que pasa cuando un robot entra al mercado al azar y solo cambia la gestion de riesgo. 7 versiones, 50 backtests (25 comparativos + 25 de sweet spot), 14 bugs documentados.">
 <style>
 :root {
   --surface-1:#fcfcfb; --plane:#f9f9f7; --ink-1:#0b0b0b; --ink-2:#52514e;
@@ -112,9 +112,10 @@ a { color:var(--pos); }
   <p class="lede">Construimos un Expert Advisor de MetaTrader 5 que decide compra o venta
   <b>lanzando una moneda</b>. Después le cambiamos únicamente la <b>gestión de la posición</b>
   a lo largo de 7 versiones: sin nada, SL/TP fijos, trailing stops, piramidación.
-  Esto es lo que pasó en 25 backtests sobre BTCUSD, con los 14 bugs
-  que nos encontramos en el camino documentados para que no los repitas.</p>
-  <div class="tiles" id="tiles"></div>
+  Esto es lo que pasó en 50 backtests sobre BTCUSD — 25 comparativos
+  entre versiones y 25 del examen de sweet spot del ganador — con los 14
+  bugs que nos encontramos en el camino documentados para que no los repitas.</p>
+  <div class="tiles"><div class="tile"><div class="k">Versiones del robot</div><div class="v">7</div><div class="d">v1 → v7</div></div><div class="tile"><div class="k">Backtests</div><div class="v">50</div><div class="d">25 comparativos + 25 de sweet spot</div></div><div class="tile"><div class="k">Mejor corrida</div><div class="v">1.864,55 USD</div><div class="d">v7_n8_p05_f10_comun</div></div><div class="tile"><div class="k">Peor corrida</div><div class="v">-1.002,93 USD</div><div class="d">v7_n5_p10_f10_comun (cuenta quebrada)</div></div><div class="tile"><div class="k">Bugs documentados</div><div class="v">14</div><div class="d">batería de conocimiento</div></div></div>
 </div>
 
 <h2 id="historia">La historia, versión a versión</h2>
@@ -126,6 +127,12 @@ a { color:var(--pos); }
 <div class="tl"><h3>v5 · 4 variantes de trailing</h3><div class="files"><code>src/AgenteExperto_Aleatorio_v5_TrailingVariantes.mq5</code></div><p>Un input elige el trailing: ATR, % fijo, minimo/maximo de N velas (Donchian) o escalonado (breakeven + tramos).</p><p class="leccion">Tres variantes pierden; solo el trailing ESCALONADO sobrevive (+142/+179 USD): asegurar por tramos deja correr sin regalar todo al ruido.</p></div>
 <div class="tl"><h3>v6 · Piramidacion</h3><div class="files"><code>src/AgenteExperto_Aleatorio_v6_Piramidacion.mq5</code></div><p>Posicion base aleatoria y suma otra igual cada vez que el precio avanza 0.5% a favor (hasta 3 niveles).</p><p class="leccion">Pocos trades (12-27), profit factor alto (2.8-7.1): los ciclos perdedores mueren rapido y los ganadores se apilan.</p></div>
 <div class="tl"><h3>v7 · Piramidacion configurable</h3><div class="files"><code>src/AgenteExperto_Aleatorio_v7_PiramidacionNiveles.mq5</code></div><p>Niveles, paso, escalado de lote y trailing comun configurables para barrer configuraciones en el tester.</p><p class="leccion">8 niveles + paso 0.5% + trailing comun gano (+1.446 a +1.865 USD en 3 semillas). El MISMO robot con paso 1.0% QUEBRO la cuenta: en piramidacion, el paso es vida o muerte.</p></div></div>
+<div class="card sub"><b>Nota metodológica:</b> v2, v3 y v5 calculan el Stop Loss como % del
+<b>saldo</b> (riesgo monetario fijo por operación); v4, v6 y v7 lo calculan como % del
+<b>precio</b> de entrada (distancia proporcional al mercado, necesaria para que cada nivel de
+una pirámide gestione su propia entrada). El cambio de base es deliberado y por eso se
+explicita: dentro de cada comparación (variantes de trailing en v5, configuraciones en v7)
+la base de cálculo no cambia.</div>
 
 <h2 id="resultados">Resultados comparativos</h2>
 <div class="sub">BTCUSD · depósito 1.000 USD · 2026.01.01 → 2026.07.07 · M15 · modelo OHLC de 1 minuto ·
@@ -138,7 +145,7 @@ varias semillas por versión (la semilla fija la secuencia de decisiones aleator
   <span><span class="sw" style="background:var(--neg)"></span>Pérdida</span></div>
 </div>
 <input class="filtro" id="filtro_bt" placeholder="Filtrar corridas (v2, v7, esc, semilla...)" oninput="pintarBacktests()">
-<div class="card tblwrap"><table id="tabla_bt"></table></div>
+<div class="card tblwrap"><table id="tabla_bt"><tr><th class="" onclick="ordenar('tag')">Corrida</th><th class="" onclick="ordenar('version')">Ver.</th><th class="num" onclick="ordenar('neto')">Neto USD &#9660;</th><th class="num" onclick="ordenar('profit_factor')">PF</th><th class="num" onclick="ordenar('dd_max_pct')">DD máx %</th><th class="num" onclick="ordenar('trades')">Trades</th><th class="num" onclick="ordenar('sharpe')">Sharpe</th><th class="" onclick="ordenar('parametros')">Parámetros</th></tr><tr><td>v7_n8_p05_f10_comun</td><td>v7</td><td class="num good">1.864,55</td><td class="num">3,85</td><td class="num">21,71</td><td class="num">171</td><td class="num">1,41</td><td class="sub">LoteBase=0.01 FactorLote=1.0 SLPorc=1.0 PasoPorc=0.5 MaxNiveles=8 TrailingComun=true NumeroMagico=2026070807 EsperaReintento=5 SemillaAleatoria=11111</td></tr><tr><td>v7_n8_p05_f10_comun_s2</td><td>v7</td><td class="num good">1.805,95</td><td class="num">3,46</td><td class="num">16,98</td><td class="num">176</td><td class="num">1,34</td><td class="sub">LoteBase=0.01 FactorLote=1.0 SLPorc=1.0 PasoPorc=0.5 MaxNiveles=8 TrailingComun=true NumeroMagico=2026070807 EsperaReintento=5 SemillaAleatoria=22222</td></tr><tr><td>v7_n8_p05_f10_comun_s3</td><td>v7</td><td class="num good">1.446,2</td><td class="num">2,65</td><td class="num">42,51</td><td class="num">189</td><td class="num">0,95</td><td class="sub">LoteBase=0.01 FactorLote=1.0 SLPorc=1.0 PasoPorc=0.5 MaxNiveles=8 TrailingComun=true NumeroMagico=2026070807 EsperaReintento=5 SemillaAleatoria=33333</td></tr><tr><td>v7_n5_p05_f07_comun</td><td>v7</td><td class="num good">1.196,35</td><td class="num">5,07</td><td class="num">21,67</td><td class="num">64</td><td class="num">1,2</td><td class="sub">LoteBase=0.01 FactorLote=0.7 SLPorc=1.0 PasoPorc=0.5 MaxNiveles=5 TrailingComun=true NumeroMagico=2026070807 EsperaReintento=5 SemillaAleatoria=11111</td></tr><tr><td>v7_n5_p05_f10_comun</td><td>v7</td><td class="num good">1.196,35</td><td class="num">5,07</td><td class="num">21,67</td><td class="num">64</td><td class="num">1,2</td><td class="sub">LoteBase=0.01 FactorLote=1.0 SLPorc=1.0 PasoPorc=0.5 MaxNiveles=5 TrailingComun=true NumeroMagico=2026070807 EsperaReintento=5 SemillaAleatoria=11111</td></tr><tr><td>v7_n5_p05_f10_solo</td><td>v7</td><td class="num good">767,45</td><td class="num">4,02</td><td class="num">25,38</td><td class="num">32</td><td class="num">0,71</td><td class="sub">LoteBase=0.01 FactorLote=1.0 SLPorc=1.0 PasoPorc=0.5 MaxNiveles=5 TrailingComun=false NumeroMagico=2026070807 EsperaReintento=5 SemillaAleatoria=11111</td></tr><tr><td>v7_n3_p05_f10_comun</td><td>v7</td><td class="num good">549,68</td><td class="num">5,76</td><td class="num">10,79</td><td class="num">24</td><td class="num">0,82</td><td class="sub">LoteBase=0.01 FactorLote=1.0 SLPorc=1.0 PasoPorc=0.5 MaxNiveles=3 TrailingComun=true NumeroMagico=2026070807 EsperaReintento=5 SemillaAleatoria=11111</td></tr><tr><td>v6_s11111</td><td>v6</td><td class="num good">538,2</td><td class="num">7,06</td><td class="num">8,88</td><td class="num">12</td><td class="num">0,24</td><td class="sub">LoteFijo=0.01 SLPorc=1.0 PasoPorc=0.5 MaxNiveles=3 NumeroMagico=2026070806 EsperaReintento=5 SemillaAleatoria=11111</td></tr><tr><td>v6_s33333</td><td>v6</td><td class="num good">462,85</td><td class="num">3,38</td><td class="num">19,48</td><td class="num">24</td><td class="num">0,67</td><td class="sub">LoteFijo=0.01 SLPorc=1.0 PasoPorc=0.5 MaxNiveles=3 NumeroMagico=2026070806 EsperaReintento=5 SemillaAleatoria=33333</td></tr><tr><td>v6_s22222</td><td>v6</td><td class="num good">379,96</td><td class="num">2,78</td><td class="num">21,38</td><td class="num">27</td><td class="num">0,57</td><td class="sub">LoteFijo=0.01 SLPorc=1.0 PasoPorc=0.5 MaxNiveles=3 NumeroMagico=2026070806 EsperaReintento=5 SemillaAleatoria=22222</td></tr><tr><td>v5_esc_s22222</td><td>v5</td><td class="num good">179</td><td class="num">1,07</td><td class="num">22,7</td><td class="num">936</td><td class="num">0,93</td><td class="sub">ModoTrailing=3 LoteFijo=0.01 RiesgoSL_Pct=1.0 RiesgoTP_Pct=0.0 ATRPeriodo=14 ATRMultiplo=2.0 TrailPorc=1.0 MaxMinVelas=20 BreakevenPorc=0.5 EscalonPorc=0.5 MejoraMinPuntos=100 NumeroMagico=2026070805 EsperaReintento=5 SemillaAleatoria=22222</td></tr><tr><td>v5_esc_s11111</td><td>v5</td><td class="num good">141,83</td><td class="num">1,05</td><td class="num">11,2</td><td class="num">1.050</td><td class="num">0,65</td><td class="sub">ModoTrailing=3 LoteFijo=0.01 RiesgoSL_Pct=1.0 RiesgoTP_Pct=0.0 ATRPeriodo=14 ATRMultiplo=2.0 TrailPorc=1.0 MaxMinVelas=20 BreakevenPorc=0.5 EscalonPorc=0.5 MejoraMinPuntos=100 NumeroMagico=2026070805 EsperaReintento=5 SemillaAleatoria=11111</td></tr><tr><td>v2_s11111</td><td>v2</td><td class="num good">40,34</td><td class="num">1,02</td><td class="num">17,14</td><td class="num">254</td><td class="num">0,2</td><td class="sub">LoteFijo=0.01 RiesgoSL_Pct=1.0 RiesgoTP_Pct=2.0 NumeroMagico=2026070802 EsperaReintento=5 SemillaAleatoria=11111</td></tr><tr><td>v2_s33333</td><td>v2</td><td class="num good">33,74</td><td class="num">1,02</td><td class="num">18,82</td><td class="num">279</td><td class="num">0,16</td><td class="sub">LoteFijo=0.01 RiesgoSL_Pct=1.0 RiesgoTP_Pct=2.0 NumeroMagico=2026070802 EsperaReintento=5 SemillaAleatoria=33333</td></tr><tr><td>v2_s22222</td><td>v2</td><td class="num bad">-109,18</td><td class="num">0,95</td><td class="num">29,32</td><td class="num">325</td><td class="num">-0,53</td><td class="sub">LoteFijo=0.01 RiesgoSL_Pct=1.0 RiesgoTP_Pct=2.0 NumeroMagico=2026070802 EsperaReintento=5 SemillaAleatoria=22222</td></tr><tr><td>v5_maxmin_s11111</td><td>v5</td><td class="num bad">-127,99</td><td class="num">0,94</td><td class="num">19,89</td><td class="num">1.112</td><td class="num">-0,64</td><td class="sub">ModoTrailing=2 LoteFijo=0.01 RiesgoSL_Pct=1.0 RiesgoTP_Pct=0.0 ATRPeriodo=14 ATRMultiplo=2.0 TrailPorc=1.0 MaxMinVelas=20 BreakevenPorc=0.5 EscalonPorc=0.5 MejoraMinPuntos=100 NumeroMagico=2026070805 EsperaReintento=5 SemillaAleatoria=11111</td></tr><tr><td>v3_s33333</td><td>v3</td><td class="num bad">-160,35</td><td class="num">0,96</td><td class="num">32,57</td><td class="num">2.349</td><td class="num">-0,72</td><td class="sub">LoteFijo=0.01 RiesgoSL_Pct=1.0 RiesgoTP_Pct=2.0 ATRPeriodo=14 ATRMultiplo=2.0 MejoraMinPuntos=100 NumeroMagico=2026070803 EsperaReintento=5 SemillaAleatoria=33333</td></tr><tr><td>v5_pct_s11111</td><td>v5</td><td class="num bad">-217,97</td><td class="num">0,93</td><td class="num">41,84</td><td class="num">1.183</td><td class="num">-0,97</td><td class="sub">ModoTrailing=1 LoteFijo=0.01 RiesgoSL_Pct=1.0 RiesgoTP_Pct=0.0 ATRPeriodo=14 ATRMultiplo=2.0 TrailPorc=1.0 MaxMinVelas=20 BreakevenPorc=0.5 EscalonPorc=0.5 MejoraMinPuntos=100 NumeroMagico=2026070805 EsperaReintento=5 SemillaAleatoria=11111</td></tr><tr><td>v5_maxmin_s22222</td><td>v5</td><td class="num bad">-226,04</td><td class="num">0,9</td><td class="num">29,88</td><td class="num">1.100</td><td class="num">-1,19</td><td class="sub">ModoTrailing=2 LoteFijo=0.01 RiesgoSL_Pct=1.0 RiesgoTP_Pct=0.0 ATRPeriodo=14 ATRMultiplo=2.0 TrailPorc=1.0 MaxMinVelas=20 BreakevenPorc=0.5 EscalonPorc=0.5 MejoraMinPuntos=100 NumeroMagico=2026070805 EsperaReintento=5 SemillaAleatoria=22222</td></tr><tr><td>v5_atr_s22222</td><td>v5</td><td class="num bad">-232,5</td><td class="num">0,94</td><td class="num">43,06</td><td class="num">2.253</td><td class="num">-0,94</td><td class="sub">ModoTrailing=0 LoteFijo=0.01 RiesgoSL_Pct=1.0 RiesgoTP_Pct=0.0 ATRPeriodo=14 ATRMultiplo=2.0 TrailPorc=1.0 MaxMinVelas=20 BreakevenPorc=0.5 EscalonPorc=0.5 MejoraMinPuntos=100 NumeroMagico=2026070805 EsperaReintento=5 SemillaAleatoria=22222</td></tr><tr><td>v5_atr_s11111</td><td>v5</td><td class="num bad">-329,94</td><td class="num">0,92</td><td class="num">39,69</td><td class="num">2.294</td><td class="num">-1,39</td><td class="sub">ModoTrailing=0 LoteFijo=0.01 RiesgoSL_Pct=1.0 RiesgoTP_Pct=0.0 ATRPeriodo=14 ATRMultiplo=2.0 TrailPorc=1.0 MaxMinVelas=20 BreakevenPorc=0.5 EscalonPorc=0.5 MejoraMinPuntos=100 NumeroMagico=2026070805 EsperaReintento=5 SemillaAleatoria=11111</td></tr><tr><td>v3_s11111</td><td>v3</td><td class="num bad">-390,4</td><td class="num">0,91</td><td class="num">43,16</td><td class="num">2.462</td><td class="num">-1,69</td><td class="sub">LoteFijo=0.01 RiesgoSL_Pct=1.0 RiesgoTP_Pct=2.0 ATRPeriodo=14 ATRMultiplo=2.0 MejoraMinPuntos=100 NumeroMagico=2026070803 EsperaReintento=5 SemillaAleatoria=11111</td></tr><tr><td>v3_s22222</td><td>v3</td><td class="num bad">-482,67</td><td class="num">0,9</td><td class="num">63,21</td><td class="num">2.566</td><td class="num">-1,87</td><td class="sub">LoteFijo=0.01 RiesgoSL_Pct=1.0 RiesgoTP_Pct=2.0 ATRPeriodo=14 ATRMultiplo=2.0 MejoraMinPuntos=100 NumeroMagico=2026070803 EsperaReintento=5 SemillaAleatoria=22222</td></tr><tr><td>v5_pct_s22222</td><td>v5</td><td class="num bad">-716,96</td><td class="num">0,8</td><td class="num">76,64</td><td class="num">1.410</td><td class="num">-2,79</td><td class="sub">ModoTrailing=1 LoteFijo=0.01 RiesgoSL_Pct=1.0 RiesgoTP_Pct=0.0 ATRPeriodo=14 ATRMultiplo=2.0 TrailPorc=1.0 MaxMinVelas=20 BreakevenPorc=0.5 EscalonPorc=0.5 MejoraMinPuntos=100 NumeroMagico=2026070805 EsperaReintento=5 SemillaAleatoria=22222</td></tr><tr><td>v7_n5_p10_f10_comun</td><td>v7</td><td class="num bad">-1.002,93</td><td class="num">0,55</td><td class="num">100,27</td><td class="num">509</td><td class="num">-5</td><td class="sub">LoteBase=0.01 FactorLote=1.0 SLPorc=1.0 PasoPorc=1.0 MaxNiveles=5 TrailingComun=true NumeroMagico=2026070807 EsperaReintento=5 SemillaAleatoria=11111</td></tr></table></div>
 
 <h2 id="bugs">La batería de bugs</h2>
 <div class="sub">Cada bug costó tiempo real. Documentarlos convierte el error en conocimiento reutilizable —
@@ -160,7 +167,17 @@ esta es la mitad "ingeniería" del trading algorítmico que casi nadie enseña.<
 
 <h2 id="sweetspot">El examen de sweet spot</h2>
 <div class="sub">Al modelo ganador se le busca su hábitat: ¿con qué tamaño de cuenta y en qué temporalidad rinde mejor?</div>
-<div id="ss_body"></div>
+<div class="card">
+    <h3 style="margin:0 0 4px">Sweet spot del modelo ganador (v7: 8 niveles, paso 0.5%, trailing comun)</h3>
+    <div class="sub" style="margin-bottom:10px">BTCUSD, 2026.01.01-2026.07.07, semilla 11111, lote fijo 0.01 · valor = beneficio neto como % del depósito</div>
+    <div class="tblwrap"><table class="heat">
+      <tr><th>Depósito \ TF</th><th>M5</th><th>M15</th><th>M30</th><th>H1</th><th>H4</th></tr>
+      <tr><th>100 USD</th><td style="background:color-mix(in srgb, var(--pos) 93%, var(--surface-1))"><b>1.864,55%</b><br><span class="sub">PF 3,85 · DD 91,26%</span></td><td style="background:color-mix(in srgb, var(--pos) 93%, var(--surface-1))"><b>1.864,55%</b><br><span class="sub">PF 3,85 · DD 91,26%</span></td><td style="background:color-mix(in srgb, var(--pos) 93%, var(--surface-1))"><b>1.864,55%</b><br><span class="sub">PF 3,85 · DD 91,26%</span></td><td style="background:color-mix(in srgb, var(--pos) 93%, var(--surface-1))"><b>1.864,55%</b><br><span class="sub">PF 3,85 · DD 91,26%</span></td><td style="background:color-mix(in srgb, var(--pos) 93%, var(--surface-1))"><b>1.864,55%</b><br><span class="sub">PF 3,85 · DD 91,26%</span></td></tr><tr><th>500 USD</th><td style="background:color-mix(in srgb, var(--pos) 25%, var(--surface-1))"><b>372,91%</b><br><span class="sub">PF 3,85 · DD 37,65%</span></td><td style="background:color-mix(in srgb, var(--pos) 25%, var(--surface-1))"><b>372,91%</b><br><span class="sub">PF 3,85 · DD 37,65%</span></td><td style="background:color-mix(in srgb, var(--pos) 25%, var(--surface-1))"><b>372,91%</b><br><span class="sub">PF 3,85 · DD 37,65%</span></td><td style="background:color-mix(in srgb, var(--pos) 25%, var(--surface-1))"><b>372,91%</b><br><span class="sub">PF 3,85 · DD 37,65%</span></td><td style="background:color-mix(in srgb, var(--pos) 25%, var(--surface-1))"><b>372,91%</b><br><span class="sub">PF 3,85 · DD 37,65%</span></td></tr><tr><th>1.000 USD</th><td style="background:color-mix(in srgb, var(--pos) 16%, var(--surface-1))"><b>186,45%</b><br><span class="sub">PF 3,85 · DD 21,71%</span></td><td style="background:color-mix(in srgb, var(--pos) 16%, var(--surface-1))"><b>186,45%</b><br><span class="sub">PF 3,85 · DD 21,71%</span></td><td style="background:color-mix(in srgb, var(--pos) 16%, var(--surface-1))"><b>186,45%</b><br><span class="sub">PF 3,85 · DD 21,71%</span></td><td style="background:color-mix(in srgb, var(--pos) 16%, var(--surface-1))"><b>186,45%</b><br><span class="sub">PF 3,85 · DD 21,71%</span></td><td style="background:color-mix(in srgb, var(--pos) 16%, var(--surface-1))"><b>186,45%</b><br><span class="sub">PF 3,85 · DD 21,71%</span></td></tr><tr><th>5.000 USD</th><td style="background:color-mix(in srgb, var(--pos) 10%, var(--surface-1))"><b>37,29%</b><br><span class="sub">PF 3,85 · DD 4,95%</span></td><td style="background:color-mix(in srgb, var(--pos) 10%, var(--surface-1))"><b>37,29%</b><br><span class="sub">PF 3,85 · DD 4,95%</span></td><td style="background:color-mix(in srgb, var(--pos) 10%, var(--surface-1))"><b>37,29%</b><br><span class="sub">PF 3,85 · DD 4,95%</span></td><td style="background:color-mix(in srgb, var(--pos) 10%, var(--surface-1))"><b>37,29%</b><br><span class="sub">PF 3,85 · DD 4,95%</span></td><td style="background:color-mix(in srgb, var(--pos) 10%, var(--surface-1))"><b>37,29%</b><br><span class="sub">PF 3,85 · DD 4,95%</span></td></tr><tr><th>10.000 USD</th><td style="background:color-mix(in srgb, var(--pos) 9%, var(--surface-1))"><b>18,65%</b><br><span class="sub">PF 3,85 · DD 2,52%</span></td><td style="background:color-mix(in srgb, var(--pos) 9%, var(--surface-1))"><b>18,65%</b><br><span class="sub">PF 3,85 · DD 2,52%</span></td><td style="background:color-mix(in srgb, var(--pos) 9%, var(--surface-1))"><b>18,65%</b><br><span class="sub">PF 3,85 · DD 2,52%</span></td><td style="background:color-mix(in srgb, var(--pos) 9%, var(--surface-1))"><b>18,65%</b><br><span class="sub">PF 3,85 · DD 2,52%</span></td><td style="background:color-mix(in srgb, var(--pos) 9%, var(--surface-1))"><b>18,65%</b><br><span class="sub">PF 3,85 · DD 2,52%</span></td></tr>
+    </table></div>
+    <div class="legend"><span><span class="sw" style="background:var(--pos)"></span>% beneficio (más intenso = mayor)</span>
+      <span><span class="sw" style="background:var(--neg)"></span>% pérdida</span></div>
+    <p style="margin-top:12px"><b>Conclusión:</b> La temporalidad NO afecta al modelo (no usa indicadores de vela: identica secuencia de trades de M5 a H4). El tamano de cuenta solo escala el riesgo porque el lote es fijo: +1.865 USD absolutos en todos los depositos. Con 100 USD es ruleta (DD 91%); con 500 USD el DD es 38%; con 1.000 USD rinde +186% con DD 22%; con 5.000+ el retorno se diluye (37% o menos) pero el DD baja de 5%. Sweet spot practico en Exness (1:200): cuenta de 1.000 a 2.000 USD, cualquier temporalidad (M15 por comodidad), escalando el lote 0.01 por cada 1.000 USD de deposito si se quiere sostener el retorno porcentual.</p>
+  </div>
 
 <h2 id="metodologia">Metodología</h2>
 <div class="card"><ol class="metodo">
@@ -210,6 +227,11 @@ y docs/BUGS.md"</i>.</li>
 y usar el Strategy Tester (los parámetros exactos de cada corrida están en la tabla de resultados).</p>
 </div>
 
+<div class="card" style="margin-top:40px;text-align:center">
+<p style="margin:0 0 6px;font-size:16px"><b>Este caso se construyó en vivo en la Sesión 9 de Instituto Quant.</b></p>
+<p class="sub" style="margin:0">Si quieres construir tus propios sistemas con esta metodología:
+<a href="https://www.institutoquant.com"><b>www.InstitutoQuant.com</b></a></p>
+</div>
 <footer>Instituto Quant · Caso de estudio generado el 2026-07-08 · Cuenta demo · Material educativo, no es asesoría financiera.</footer>
 </div>
 <div class="tooltip" id="tt"></div>
@@ -226,23 +248,6 @@ function cambiarTema() {
 const fmt = n => (n === null || n === undefined || isNaN(n)) ? '-' :
   Number(n).toLocaleString('es-CO', {maximumFractionDigits: 2});
 const clase = n => n > 0 ? 'good' : (n < 0 ? 'bad' : '');
-
-// tiles del hero
-(function() {
-  const bts = DATOS.backtests;
-  const netos = bts.map(b => b.neto).filter(n => n !== null && !isNaN(n));
-  const mejor = bts.reduce((a, b) => (b.neto ?? -1e9) > (a?.neto ?? -1e9) ? b : a, null);
-  const peor = bts.reduce((a, b) => (b.neto ?? 1e9) < (a?.neto ?? 1e9) ? b : a, null);
-  const t = [
-    {k: 'Versiones del robot', v: '7', d: 'v1 → v7'},
-    {k: 'Backtests', v: bts.length, d: 'BTCUSD, 6 meses'},
-    {k: 'Mejor corrida', v: fmt(mejor?.neto) + ' USD', d: mejor?.tag || ''},
-    {k: 'Peor corrida', v: fmt(peor?.neto) + ' USD', d: (peor?.tag || '') + ' (cuenta quebrada)'},
-    {k: 'Bugs documentados', v: DATOS.bugs.length, d: 'batería de conocimiento'},
-  ];
-  document.getElementById('tiles').innerHTML = t.map(x =>
-    `<div class="tile"><div class="k">${x.k}</div><div class="v">${x.v}</div><div class="d">${x.d}</div></div>`).join('');
-})();
 
 // grafico de barras divergente (cero al 35% del ancho: hay mas rango positivo)
 (function() {
@@ -309,41 +314,8 @@ function pintarBacktests() {
   document.getElementById('tabla_bt').innerHTML = `<tr>${th}</tr>${tr}`;
 }
 function ordenar(k) { if (ordenCol === k) ordenAsc = !ordenAsc; else { ordenCol = k; ordenAsc = false; } pintarBacktests(); }
-pintarBacktests();
-
-// sweet spot
-(function() {
-  const ss = DATOS.sweetspot;
-  const cont = document.getElementById('ss_body');
-  if (!ss || !ss.corridas || !ss.corridas.length) {
-    cont.innerHTML = '<div class="card sub">Los resultados del examen de sweet spot se publican en esta sección.</div>';
-    return;
-  }
-  const deps = [...new Set(ss.corridas.map(c => c.deposito))].sort((a, b) => a - b);
-  const pers = [...new Set(ss.corridas.map(c => c.periodo))];
-  const mapa = {};
-  ss.corridas.forEach(c => mapa[c.deposito + '|' + c.periodo] = c);
-  const maxAbs = Math.max(...ss.corridas.map(c => Math.abs(c.neto_pct ?? 0)), 1);
-  const celda = c => {
-    if (!c) return '<td class="sub">-</td>';
-    const v = c.neto_pct ?? 0;
-    const alfa = Math.min(Math.abs(v) / maxAbs, 1) * 0.85 + 0.08;
-    const cv = v >= 0 ? 'var(--pos)' : 'var(--neg)';
-    return `<td style="background:color-mix(in srgb, ${cv} ${Math.round(alfa * 100)}%, var(--surface-1))">` +
-      `<b>${fmt(v)}%</b><br><span class="sub">PF ${fmt(c.profit_factor)} · DD ${fmt(c.dd_max_pct)}%</span></td>`;
-  };
-  cont.innerHTML = `<div class="card">
-    <h3 style="margin:0 0 4px">${ss.titulo || 'Sweet spot'}</h3>
-    <div class="sub" style="margin-bottom:10px">${ss.subtitulo || ''} · valor = beneficio neto como % del depósito</div>
-    <div class="tblwrap"><table class="heat">
-      <tr><th>Depósito \ TF</th>${pers.map(p => `<th>${p}</th>`).join('')}</tr>
-      ${deps.map(d => `<tr><th>${fmt(d)} USD</th>${pers.map(p => celda(mapa[d + '|' + p])).join('')}</tr>`).join('')}
-    </table></div>
-    <div class="legend"><span><span class="sw" style="background:var(--pos)"></span>% beneficio (más intenso = mayor)</span>
-      <span><span class="sw" style="background:var(--neg)"></span>% pérdida</span></div>
-    ${ss.conclusion ? `<p style="margin-top:12px"><b>Conclusión:</b> ${ss.conclusion}</p>` : ''}
-  </div>`;
-})();
+// La tabla llega pre-renderizada desde el generador (funciona sin JS);
+// el JS solo la re-pinta al filtrar u ordenar.
 </script>
 </body>
 </html>

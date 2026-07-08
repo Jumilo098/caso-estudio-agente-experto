@@ -104,7 +104,7 @@ PLANTILLA = """<!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Caso de estudio: el Agente Experto Aleatorio — Instituto Quant</title>
-<meta name="description" content="Que pasa cuando un robot entra al mercado al azar y solo cambia la gestion de riesgo. 7 versiones, 50 backtests, 14 bugs documentados.">
+<meta name="description" content="Que pasa cuando un robot entra al mercado al azar y solo cambia la gestion de riesgo. 7 versiones, __N_TOTAL__ backtests (__N_COMP__ comparativos + __N_SS__ de sweet spot), __N_BUGS__ bugs documentados.">
 <style>
 :root {
   --surface-1:#fcfcfb; --plane:#f9f9f7; --ink-1:#0b0b0b; --ink-2:#52514e;
@@ -212,14 +212,21 @@ a { color:var(--pos); }
   <p class="lede">Construimos un Expert Advisor de MetaTrader 5 que decide compra o venta
   <b>lanzando una moneda</b>. Después le cambiamos únicamente la <b>gestión de la posición</b>
   a lo largo de 7 versiones: sin nada, SL/TP fijos, trailing stops, piramidación.
-  Esto es lo que pasó en __N_RUNS__ backtests sobre BTCUSD, con los __N_BUGS__ bugs
-  que nos encontramos en el camino documentados para que no los repitas.</p>
-  <div class="tiles" id="tiles"></div>
+  Esto es lo que pasó en __N_TOTAL__ backtests sobre BTCUSD — __N_COMP__ comparativos
+  entre versiones y __N_SS__ del examen de sweet spot del ganador — con los __N_BUGS__
+  bugs que nos encontramos en el camino documentados para que no los repitas.</p>
+  <div class="tiles">__TILES__</div>
 </div>
 
 <h2 id="historia">La historia, versión a versión</h2>
 <div class="sub">La entrada nunca cambia (aleatoria); solo cambia cómo se gestiona lo que pasa después.</div>
 <div class="timeline">__TIMELINE__</div>
+<div class="card sub"><b>Nota metodológica:</b> v2, v3 y v5 calculan el Stop Loss como % del
+<b>saldo</b> (riesgo monetario fijo por operación); v4, v6 y v7 lo calculan como % del
+<b>precio</b> de entrada (distancia proporcional al mercado, necesaria para que cada nivel de
+una pirámide gestione su propia entrada). El cambio de base es deliberado y por eso se
+explicita: dentro de cada comparación (variantes de trailing en v5, configuraciones en v7)
+la base de cálculo no cambia.</div>
 
 <h2 id="resultados">Resultados comparativos</h2>
 <div class="sub">BTCUSD · depósito 1.000 USD · 2026.01.01 → 2026.07.07 · M15 · modelo OHLC de 1 minuto ·
@@ -232,7 +239,7 @@ varias semillas por versión (la semilla fija la secuencia de decisiones aleator
   <span><span class="sw" style="background:var(--neg)"></span>Pérdida</span></div>
 </div>
 <input class="filtro" id="filtro_bt" placeholder="Filtrar corridas (v2, v7, esc, semilla...)" oninput="pintarBacktests()">
-<div class="card tblwrap"><table id="tabla_bt"></table></div>
+<div class="card tblwrap"><table id="tabla_bt">__TABLA_BT__</table></div>
 
 <h2 id="bugs">La batería de bugs</h2>
 <div class="sub">Cada bug costó tiempo real. Documentarlos convierte el error en conocimiento reutilizable —
@@ -241,7 +248,7 @@ esta es la mitad "ingeniería" del trading algorítmico que casi nadie enseña.<
 
 <h2 id="sweetspot">El examen de sweet spot</h2>
 <div class="sub">Al modelo ganador se le busca su hábitat: ¿con qué tamaño de cuenta y en qué temporalidad rinde mejor?</div>
-<div id="ss_body"></div>
+__SWEETSPOT__
 
 <h2 id="metodologia">Metodología</h2>
 <div class="card"><ol class="metodo">
@@ -263,7 +270,7 @@ un sistema rentable. Todo se corrió en cuenta demo. Nada de esto es asesoría f
 <h3 style="margin:0 0 6px">📦 Base de conocimiento completa (ZIP, ~5 MB)</h3>
 <p style="margin:6px 0">Una carpeta lista para soltar dentro de TU proyecto: batería de bugs, plantilla MQL5
 validada, aprendizajes del entorno, metodología de backtests, los 7 EAs, los datos en JSON y los
-<b>50 reportes completos del Strategy Tester</b> con sus curvas (los adjuntos). Incluye un
+<b>__N_TOTAL__ reportes completos del Strategy Tester</b> con sus curvas (los adjuntos). Incluye un
 <code>CLAUDE.md</code> para que tu asistente de IA (Claude Code, Cursor...) la use como contexto
 automáticamente, y un <code>INSTRUCTIVO.md</code> paso a paso.</p>
 <p style="margin:12px 0"><a href="descargas/base_conocimiento_agente_experto.zip" download
@@ -291,6 +298,11 @@ y docs/BUGS.md"</i>.</li>
 y usar el Strategy Tester (los parámetros exactos de cada corrida están en la tabla de resultados).</p>
 </div>
 
+<div class="card" style="margin-top:40px;text-align:center">
+<p style="margin:0 0 6px;font-size:16px"><b>Este caso se construyó en vivo en la Sesión 9 de Instituto Quant.</b></p>
+<p class="sub" style="margin:0">Si quieres construir tus propios sistemas con esta metodología:
+<a href="https://www.institutoquant.com"><b>www.InstitutoQuant.com</b></a></p>
+</div>
 <footer>Instituto Quant · Caso de estudio generado el __FECHA__ · Cuenta demo · Material educativo, no es asesoría financiera.</footer>
 </div>
 <div class="tooltip" id="tt"></div>
@@ -307,23 +319,6 @@ function cambiarTema() {
 const fmt = n => (n === null || n === undefined || isNaN(n)) ? '-' :
   Number(n).toLocaleString('es-CO', {maximumFractionDigits: 2});
 const clase = n => n > 0 ? 'good' : (n < 0 ? 'bad' : '');
-
-// tiles del hero
-(function() {
-  const bts = DATOS.backtests;
-  const netos = bts.map(b => b.neto).filter(n => n !== null && !isNaN(n));
-  const mejor = bts.reduce((a, b) => (b.neto ?? -1e9) > (a?.neto ?? -1e9) ? b : a, null);
-  const peor = bts.reduce((a, b) => (b.neto ?? 1e9) < (a?.neto ?? 1e9) ? b : a, null);
-  const t = [
-    {k: 'Versiones del robot', v: '7', d: 'v1 → v7'},
-    {k: 'Backtests', v: bts.length, d: 'BTCUSD, 6 meses'},
-    {k: 'Mejor corrida', v: fmt(mejor?.neto) + ' USD', d: mejor?.tag || ''},
-    {k: 'Peor corrida', v: fmt(peor?.neto) + ' USD', d: (peor?.tag || '') + ' (cuenta quebrada)'},
-    {k: 'Bugs documentados', v: DATOS.bugs.length, d: 'batería de conocimiento'},
-  ];
-  document.getElementById('tiles').innerHTML = t.map(x =>
-    `<div class="tile"><div class="k">${x.k}</div><div class="v">${x.v}</div><div class="d">${x.d}</div></div>`).join('');
-})();
 
 // grafico de barras divergente (cero al 35% del ancho: hay mas rango positivo)
 (function() {
@@ -390,41 +385,8 @@ function pintarBacktests() {
   document.getElementById('tabla_bt').innerHTML = `<tr>${th}</tr>${tr}`;
 }
 function ordenar(k) { if (ordenCol === k) ordenAsc = !ordenAsc; else { ordenCol = k; ordenAsc = false; } pintarBacktests(); }
-pintarBacktests();
-
-// sweet spot
-(function() {
-  const ss = DATOS.sweetspot;
-  const cont = document.getElementById('ss_body');
-  if (!ss || !ss.corridas || !ss.corridas.length) {
-    cont.innerHTML = '<div class="card sub">Los resultados del examen de sweet spot se publican en esta sección.</div>';
-    return;
-  }
-  const deps = [...new Set(ss.corridas.map(c => c.deposito))].sort((a, b) => a - b);
-  const pers = [...new Set(ss.corridas.map(c => c.periodo))];
-  const mapa = {};
-  ss.corridas.forEach(c => mapa[c.deposito + '|' + c.periodo] = c);
-  const maxAbs = Math.max(...ss.corridas.map(c => Math.abs(c.neto_pct ?? 0)), 1);
-  const celda = c => {
-    if (!c) return '<td class="sub">-</td>';
-    const v = c.neto_pct ?? 0;
-    const alfa = Math.min(Math.abs(v) / maxAbs, 1) * 0.85 + 0.08;
-    const cv = v >= 0 ? 'var(--pos)' : 'var(--neg)';
-    return `<td style="background:color-mix(in srgb, ${cv} ${Math.round(alfa * 100)}%, var(--surface-1))">` +
-      `<b>${fmt(v)}%</b><br><span class="sub">PF ${fmt(c.profit_factor)} · DD ${fmt(c.dd_max_pct)}%</span></td>`;
-  };
-  cont.innerHTML = `<div class="card">
-    <h3 style="margin:0 0 4px">${ss.titulo || 'Sweet spot'}</h3>
-    <div class="sub" style="margin-bottom:10px">${ss.subtitulo || ''} · valor = beneficio neto como % del depósito</div>
-    <div class="tblwrap"><table class="heat">
-      <tr><th>Depósito \\ TF</th>${pers.map(p => `<th>${p}</th>`).join('')}</tr>
-      ${deps.map(d => `<tr><th>${fmt(d)} USD</th>${pers.map(p => celda(mapa[d + '|' + p])).join('')}</tr>`).join('')}
-    </table></div>
-    <div class="legend"><span><span class="sw" style="background:var(--pos)"></span>% beneficio (más intenso = mayor)</span>
-      <span><span class="sw" style="background:var(--neg)"></span>% pérdida</span></div>
-    ${ss.conclusion ? `<p style="margin-top:12px"><b>Conclusión:</b> ${ss.conclusion}</p>` : ''}
-  </div>`;
-})();
+// La tabla llega pre-renderizada desde el generador (funciona sin JS);
+// el JS solo la re-pinta al filtrar u ordenar.
 </script>
 </body>
 </html>
@@ -443,6 +405,102 @@ def bloque_timeline():
     return "\n".join(partes)
 
 
+def fmt_es(v):
+    """Formato es-CO como el toLocaleString del JS: 1864.55 -> '1.864,55'."""
+    if v is None or not isinstance(v, (int, float)):
+        return "-"
+    s = f"{v:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
+    if "," in s:
+        s = s.rstrip("0").rstrip(",")
+    return s
+
+
+def clase_num(v):
+    if not isinstance(v, (int, float)):
+        return ""
+    return "good" if v > 0 else ("bad" if v < 0 else "")
+
+
+def bloque_tiles(backtests, sweetspot):
+    n_comp = len(backtests)
+    n_ss = len((sweetspot or {}).get("corridas", []))
+    con_neto = [b for b in backtests if isinstance(b.get("neto"), (int, float))]
+    mejor = max(con_neto, key=lambda b: b["neto"]) if con_neto else None
+    peor = min(con_neto, key=lambda b: b["neto"]) if con_neto else None
+    peor_extra = " (cuenta quebrada)" if peor and isinstance(peor.get("dd_max_pct"), (int, float)) and peor["dd_max_pct"] >= 100 else ""
+    tiles = [
+        ("Versiones del robot", "7", "v1 → v7"),
+        ("Backtests", str(n_comp + n_ss), f"{n_comp} comparativos + {n_ss} de sweet spot"),
+        ("Mejor corrida", (fmt_es(mejor["neto"]) + " USD") if mejor else "-", mejor["tag"] if mejor else ""),
+        ("Peor corrida", (fmt_es(peor["neto"]) + " USD") if peor else "-", (peor["tag"] + peor_extra) if peor else ""),
+        ("Bugs documentados", str(len(BUGS)), "batería de conocimiento"),
+    ]
+    return "".join(
+        f'<div class="tile"><div class="k">{k}</div><div class="v">{v}</div><div class="d">{d}</div></div>'
+        for k, v, d in tiles)
+
+
+def bloque_tabla(backtests):
+    """Tabla pre-renderizada (misma forma que pinta el JS) para lectores sin JS y SEO."""
+    cols = [("tag", "Corrida", False), ("version", "Ver.", False), ("neto", "Neto USD", True),
+            ("profit_factor", "PF", True), ("dd_max_pct", "DD máx %", True),
+            ("trades", "Trades", True), ("sharpe", "Sharpe", True), ("parametros", "Parámetros", False)]
+    th = "".join(
+        f'<th class="{"num" if num else ""}" onclick="ordenar(\'{k}\')">{t}{" &#9660;" if k == "neto" else ""}</th>'
+        for k, t, num in cols)
+    filas = sorted(backtests,
+                   key=lambda b: b["neto"] if isinstance(b.get("neto"), (int, float)) else -1e18,
+                   reverse=True)
+    tr = "".join(
+        f'<tr><td>{b["tag"]}</td><td>{b["version"]}</td>'
+        f'<td class="num {clase_num(b.get("neto"))}">{fmt_es(b.get("neto"))}</td>'
+        f'<td class="num">{fmt_es(b.get("profit_factor"))}</td>'
+        f'<td class="num">{fmt_es(b.get("dd_max_pct"))}</td>'
+        f'<td class="num">{fmt_es(b.get("trades"))}</td>'
+        f'<td class="num">{fmt_es(b.get("sharpe"))}</td>'
+        f'<td class="sub">{b.get("parametros") or ""}</td></tr>'
+        for b in filas)
+    return f"<tr>{th}</tr>{tr}"
+
+
+def bloque_sweetspot(ss):
+    """Matriz deposito x temporalidad pre-renderizada (HTML+CSS puros, sin JS)."""
+    corridas = (ss or {}).get("corridas", [])
+    if not corridas:
+        return '<div class="card sub">Los resultados del examen de sweet spot se publican en esta sección.</div>'
+    deps = sorted({c["deposito"] for c in corridas})
+    pers = list(dict.fromkeys(c["periodo"] for c in corridas))
+    mapa = {(c["deposito"], c["periodo"]): c for c in corridas}
+    max_abs = max((abs(c.get("neto_pct") or 0) for c in corridas), default=1) or 1
+
+    def celda(c):
+        if not c:
+            return '<td class="sub">-</td>'
+        v = c.get("neto_pct") or 0
+        alfa = min(abs(v) / max_abs, 1) * 0.85 + 0.08
+        cv = "var(--pos)" if v >= 0 else "var(--neg)"
+        return (f'<td style="background:color-mix(in srgb, {cv} {round(alfa * 100)}%, var(--surface-1))">'
+                f'<b>{fmt_es(v)}%</b><br><span class="sub">PF {fmt_es(c.get("profit_factor"))} · '
+                f'DD {fmt_es(c.get("dd_max_pct"))}%</span></td>')
+
+    encabezado = "".join(f"<th>{p}</th>" for p in pers)
+    filas = "".join(
+        f'<tr><th>{fmt_es(d)} USD</th>' + "".join(celda(mapa.get((d, p))) for p in pers) + "</tr>"
+        for d in deps)
+    conclusion = f'<p style="margin-top:12px"><b>Conclusión:</b> {ss["conclusion"]}</p>' if ss.get("conclusion") else ""
+    return f'''<div class="card">
+    <h3 style="margin:0 0 4px">{ss.get("titulo", "Sweet spot")}</h3>
+    <div class="sub" style="margin-bottom:10px">{ss.get("subtitulo", "")} · valor = beneficio neto como % del depósito</div>
+    <div class="tblwrap"><table class="heat">
+      <tr><th>Depósito \\ TF</th>{encabezado}</tr>
+      {filas}
+    </table></div>
+    <div class="legend"><span><span class="sw" style="background:var(--pos)"></span>% beneficio (más intenso = mayor)</span>
+      <span><span class="sw" style="background:var(--neg)"></span>% pérdida</span></div>
+    {conclusion}
+  </div>'''
+
+
 def bloque_bugs():
     partes = []
     for b in BUGS:
@@ -459,11 +517,18 @@ def main():
     backtests = [b for b in filas_backtests(resultados) if not b["tag"].startswith("ss_")]
 
     datos = {"backtests": backtests, "bugs": BUGS, "sweetspot": sweetspot or None}
+    n_comp = len(backtests)
+    n_ss = len((sweetspot or {}).get("corridas", []))
     html = (PLANTILLA
             .replace("__DATA_JSON__", json.dumps(datos, ensure_ascii=False))
             .replace("__TIMELINE__", bloque_timeline())
             .replace("__BUGS__", bloque_bugs())
-            .replace("__N_RUNS__", str(len(backtests)))
+            .replace("__TILES__", bloque_tiles(backtests, sweetspot))
+            .replace("__TABLA_BT__", bloque_tabla(backtests))
+            .replace("__SWEETSPOT__", bloque_sweetspot(sweetspot))
+            .replace("__N_COMP__", str(n_comp))
+            .replace("__N_SS__", str(n_ss))
+            .replace("__N_TOTAL__", str(n_comp + n_ss))
             .replace("__N_BUGS__", str(len(BUGS)))
             .replace("__FECHA__", date.today().isoformat()))
 

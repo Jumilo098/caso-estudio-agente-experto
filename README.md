@@ -8,9 +8,10 @@ lo único que cambia es la gestión de la posición (sin nada → SL/TP fijos �
 trailing stops → piramidación), las backtesteamos con semillas reproducibles y
 documentamos cada bug del camino.
 
-**➡️ La forma cómoda de leer el caso es el sitio web** (`index.html`, desplegado
-en Vercel). Contiene la historia versión a versión, los resultados interactivos,
-la batería de bugs y el examen de sweet spot del modelo ganador.
+**➡️ La forma cómoda de leer el caso es el sitio web:
+https://casoazar.institutoquant.com** — contiene la historia versión a versión,
+los resultados interactivos, la batería de bugs, el examen de sweet spot del
+modelo ganador y la base de conocimiento descargable.
 
 ## Estructura del repositorio
 

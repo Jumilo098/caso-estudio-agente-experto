@@ -7,7 +7,7 @@ tu propio proyecto de trading algorítmico y lo uses como base de conocimiento.
 ## 1. Descarga
 
 **Opción A (recomendada):** descarga el ZIP desde el sitio del caso:
-https://caso-agente-experto.vercel.app → sección "Descargas" → *Base de
+https://casoazar.institutoquant.com → sección "Descargas" → *Base de
 conocimiento completa*. Descomprímelo.
 
 **Opción B:** clona el repositorio y copia la carpeta:
