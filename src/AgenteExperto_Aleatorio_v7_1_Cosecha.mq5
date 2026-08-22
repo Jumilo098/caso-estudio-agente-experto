@@ -31,6 +31,16 @@
 //|                    hueco libre deja que la logica normal abra    |
 //|                    un nivel nuevo arriba. La piramide camina:    |
 //|                    cobra por abajo, compra por arriba.           |
+//|   ModoCosecha = 4  COSECHA TOTAL (22-ago-2026): en cualquier     |
+//|                    punto del ciclo, si el flotante >= PrimasK    |
+//|                    primas (prima = LoteBase*SLPorc% del nivel 1, |
+//|                    la perdida del primer SL), cierra TODO a      |
+//|                    mercado y resetea: recupera la optionalidad   |
+//|                    en ambas direcciones y financia PrimasK       |
+//|                    intentos nuevos. Regla pre-registrada en      |
+//|                    ORO/docs/10 seccion 6; backtest en            |
+//|                    ORO/code/investigacion-btc/piramide_cosecha.py|
+//|   ModoCosecha = 5  COSECHA TOTAL + RATCHET (4 y 1 a la vez).     |
 //|                                                                  |
 //|  Inspiracion del modo 1 y 3: v5_escalonado, la UNICA variante    |
 //|  del caso con neto REALIZADO positivo (BUG-15, auditoria         |
@@ -60,8 +70,9 @@ input double SLPorc            = 1.0;         // SL de cada posicion (% de su en
 input double PasoPorc          = 0.5;         // Avance a favor para piramidar (%)
 input int    MaxNiveles        = 8;           // Maximo de posiciones simultaneas del ciclo
 input bool   TrailingComun     = true;        // Subir SL de todo el ciclo con cada nivel nuevo
-input int    ModoCosecha       = 1;           // 0=control(v7) 1=ratchet virtual 2=trailing pico 3=piramide rodante
+input int    ModoCosecha       = 1;           // 0=control(v7) 1=ratchet 2=trailing pico 3=rodante 4=cosecha total 5=total+ratchet
 input double TrailPostPorc     = 1.0;         // Distancia del trailing post-llenado (modo 2, % del pico)
+input double PrimasK           = 100.0;       // Modos 4/5: cosechar cuando flotante >= PrimasK x prima del nivel 1
 input int    MejoraMinPuntos   = 100;         // Mejora minima del SL en puntos (BUG-08)
 input int    HeartbeatSegundos = 5;           // Frecuencia del latido de estado
 input long   NumeroMagico      = 2026082571;  // Magico: fecha AAAAMMDD + 71 (v7.1, BUG-04)
@@ -251,6 +262,22 @@ void Gestionar()
       return;
    }
 
+   // Modos 4/5: cosecha total por multiplo de prima, en cualquier punto del ciclo
+   if(ModoCosecha == 4 || ModoCosecha == 5)
+   {
+      double flot  = FlotanteCiclo();
+      double prima = PrimaCiclo();
+      if(prima > 0.0 && flot >= PrimasK * prima)
+      {
+         ultimoIntento = TimeCurrent();
+         int cerradas = CerrarCiclo();
+         Print("cosecha m", ModoCosecha, ": flotante ", DoubleToString(flot, 2),
+               " >= ", DoubleToString(PrimasK, 0), " x prima ", DoubleToString(prima, 2),
+               " | cerradas=", cerradas);
+         return;
+      }
+   }
+
    int nivelesAbiertos = ContarPosiciones();
    if(nivelesAbiertos >= MaxNiveles)
    {
@@ -290,7 +317,7 @@ void Cosechar(bool esCompra, double entradaExtrema)
    double factorSL = esCompra ? (1.0 - SLPorc / 100.0)
                               : (1.0 + SLPorc / 100.0);
 
-   if(ModoCosecha == 1)
+   if(ModoCosecha == 1 || ModoCosecha == 5)
    {
       // RATCHET VIRTUAL: derivar del SL comun la "entrada" del ultimo nivel
       // (real o virtual) y seguir subiendo el SL cada PasoPorc de avance,
@@ -339,6 +366,73 @@ void Cosechar(bool esCompra, double entradaExtrema)
       if(CerrarNivelMasAntiguo(esCompra))
          IgualarStops(esCompra, NormalizeDouble(disparo * factorSL, _Digits));
    }
+}
+
+//+------------------------------------------------------------------+
+//| Flotante del ciclo (profit + swap de todas las posiciones)       |
+//+------------------------------------------------------------------+
+double FlotanteCiclo()
+{
+   double f = 0.0;
+   for(int i = PositionsTotal() - 1; i >= 0; i--)
+   {
+      if(PositionGetTicket(i) == 0) continue;
+      if(PositionGetString(POSITION_SYMBOL) != _Symbol ||
+         PositionGetInteger(POSITION_MAGIC) != NumeroMagico)
+         continue;
+      f += PositionGetDouble(POSITION_PROFIT) + PositionGetDouble(POSITION_SWAP);
+   }
+   return(f);
+}
+
+//+------------------------------------------------------------------+
+//| Prima del ciclo = perdida del SL del nivel 1 (la posicion mas    |
+//| antigua): LoteBase * SLPorc% * entrada, en moneda de la cuenta   |
+//+------------------------------------------------------------------+
+double PrimaCiclo()
+{
+   datetime tMin = 0; double entrada = 0.0; double lote = 0.0; bool esCompra = true;
+   for(int i = PositionsTotal() - 1; i >= 0; i--)
+   {
+      if(PositionGetTicket(i) == 0) continue;
+      if(PositionGetString(POSITION_SYMBOL) != _Symbol ||
+         PositionGetInteger(POSITION_MAGIC) != NumeroMagico)
+         continue;
+      datetime t = (datetime)PositionGetInteger(POSITION_TIME);
+      if(tMin == 0 || t < tMin)
+      {
+         tMin = t;
+         entrada  = PositionGetDouble(POSITION_PRICE_OPEN);
+         lote     = PositionGetDouble(POSITION_VOLUME);
+         esCompra = (PositionGetInteger(POSITION_TYPE) == POSITION_TYPE_BUY);
+      }
+   }
+   if(tMin == 0) return(0.0);
+   double sl = esCompra ? entrada * (1.0 - SLPorc / 100.0) : entrada * (1.0 + SLPorc / 100.0);
+   double perdida = 0.0;
+   if(!OrderCalcProfit(esCompra ? ORDER_TYPE_BUY : ORDER_TYPE_SELL, _Symbol, lote, entrada, sl, perdida))
+      return(0.0);
+   return(MathAbs(perdida));
+}
+
+//+------------------------------------------------------------------+
+//| Cierra todas las posiciones del ciclo a mercado (modos 4/5)      |
+//+------------------------------------------------------------------+
+int CerrarCiclo()
+{
+   int n = 0;
+   for(int i = PositionsTotal() - 1; i >= 0; i--)
+   {
+      ulong ticket = PositionGetTicket(i);
+      if(ticket == 0) continue;
+      if(PositionGetString(POSITION_SYMBOL) != _Symbol ||
+         PositionGetInteger(POSITION_MAGIC) != NumeroMagico)
+         continue;
+      if(trade.PositionClose(ticket) && trade.ResultRetcode() == TRADE_RETCODE_DONE) n++;
+      else EscribirEstado("fallo cierre total retcode=" + (string)trade.ResultRetcode());
+   }
+   picoCosecha = 0.0;
+   return(n);
 }
 
 //+------------------------------------------------------------------+
