@@ -77,11 +77,20 @@
 //|  >= 6 meses, agente propio en el hub -> ETH en paralelo.         |
 //|  Alarma: 12 meses rodantes negativos (nunca ocurrio en 85).      |
 //|                                                                  |
+//|  v1.1 (22-ago-2026, tras el primer tester): los niveles 2..N se  |
+//|  colocan como ORDENES STOP PENDIENTES en su precio de disparo    |
+//|  (extrema +/- PasoPorc). La v1.0 los abria a mercado en el       |
+//|  siguiente tick con 5 s de espera y en movimientos rapidos los   |
+//|  llenaba 0,2-0,3% peor que el disparo: la piramide no se llenaba |
+//|  y el tester dio -$1.928 en 8 anos frente a +$3.978 de la        |
+//|  replica. La replica asume llenado en el disparo: eso SOLO es    |
+//|  realista con una orden stop. Leccion para el caso: el tester    |
+//|  es el criterio 1 por algo.                                      |
 //|  Fuentes: ORO/docs/10_PIRAMIDE_SINTETICA_BTC.md (secciones 8-13) |
 //|  y ORO/code/investigacion-btc/piramide_*.py (replica y pruebas). |
 //+------------------------------------------------------------------+
 #property copyright "Instituto Quant"
-#property version   "1.00"
+#property version   "1.10"
 #property description "Ruptura Donchian + piramide de niveles + trailing comun + trailing del pico. Sin ruptura no entra."
 
 #include <Trade\Trade.mqh>
@@ -217,15 +226,52 @@ void Gestionar()
    }
 
    int n = ContarPosiciones();
-   if(n >= MaxNiveles) { Cosechar(esCompra, bid, ask); return; }
+   if(n >= MaxNiveles) { CancelarPendientes(); Cosechar(esCompra, bid, ask); return; }
 
-   double disparo = esCompra ? entradaExtrema * (1.0 + PasoPorc / 100.0) : entradaExtrema * (1.0 - PasoPorc / 100.0);
-   bool toca = esCompra ? (ask >= disparo) : (bid <= disparo);
-   if(toca)
+   // v1.1: el siguiente nivel es una orden STOP pendiente en su precio de disparo
+   double disparo = NormalizeDouble(esCompra ? entradaExtrema * (1.0 + PasoPorc / 100.0)
+                                             : entradaExtrema * (1.0 - PasoPorc / 100.0), _Digits);
+   if(!HayPendienteEn(disparo))
    {
-      ultimoIntento = TimeCurrent();
-      AbrirNivel(esCompra, n + 1, "donchian nivel " + (string)(n + 1));
+      CancelarPendientes();
+      ColocarStop(esCompra, disparo, "donchian nivel " + (string)(n + 1));
    }
+}
+
+//+------------------------------------------------------------------+
+//| Ordenes pendientes del ciclo                                     |
+//+------------------------------------------------------------------+
+bool HayPendienteEn(double precio)
+{
+   for(int i = OrdersTotal() - 1; i >= 0; i--)
+   {
+      ulong t = OrderGetTicket(i);
+      if(t == 0 || OrderGetString(ORDER_SYMBOL) != _Symbol || OrderGetInteger(ORDER_MAGIC) != NumeroMagico) continue;
+      if(MathAbs(OrderGetDouble(ORDER_PRICE_OPEN) - precio) < _Point) return true;
+   }
+   return false;
+}
+void CancelarPendientes()
+{
+   for(int i = OrdersTotal() - 1; i >= 0; i--)
+   {
+      ulong t = OrderGetTicket(i);
+      if(t == 0 || OrderGetString(ORDER_SYMBOL) != _Symbol || OrderGetInteger(ORDER_MAGIC) != NumeroMagico) continue;
+      trade.OrderDelete(t);
+   }
+}
+void ColocarStop(bool esCompra, double precio, string etiqueta)
+{
+   double lote = NormalizarLote(LoteBase);
+   double sl = NormalizeDouble(esCompra ? precio * (1.0 - SLPorc / 100.0) : precio * (1.0 + SLPorc / 100.0), _Digits);
+   double ask = SymbolInfoDouble(_Symbol, SYMBOL_ASK), bid = SymbolInfoDouble(_Symbol, SYMBOL_BID);
+   // si el precio ya paso el disparo (gap), entra a mercado
+   if((esCompra && ask >= precio) || (!esCompra && bid <= precio))
+   { AbrirNivel(esCompra, ContarPosiciones() + 1, etiqueta); return; }
+   bool ok = esCompra ? trade.BuyStop(lote, precio, _Symbol, sl, 0.0, ORDER_TIME_GTC, 0, etiqueta)
+                      : trade.SellStop(lote, precio, _Symbol, sl, 0.0, ORDER_TIME_GTC, 0, etiqueta);
+   if(!ok || trade.ResultRetcode() != TRADE_RETCODE_PLACED)
+      EscribirEstado("fallo stop retcode=" + (string)trade.ResultRetcode() + " " + trade.ResultRetcodeDescription());
 }
 
 //+------------------------------------------------------------------+
@@ -335,7 +381,20 @@ void OnTradeTransaction(const MqlTradeTransaction &trans, const MqlTradeRequest 
    ulong deal = trans.deal;
    if(deal == 0 || !HistoryDealSelect(deal)) return;
    if(HistoryDealGetString(deal, DEAL_SYMBOL) != _Symbol || HistoryDealGetInteger(deal, DEAL_MAGIC) != NumeroMagico) return;
+   if(HistoryDealGetInteger(deal, DEAL_ENTRY) == DEAL_ENTRY_IN)
+   {
+      // nivel llenado por orden stop: trailing comun al SL de este nivel
+      if(TrailingComun && ContarPosiciones() > 1)
+      {
+         bool c = (HistoryDealGetInteger(deal, DEAL_TYPE) == DEAL_TYPE_BUY);
+         double px = HistoryDealGetDouble(deal, DEAL_PRICE);
+         double sl = NormalizeDouble(c ? px * (1.0 - SLPorc / 100.0) : px * (1.0 + SLPorc / 100.0), _Digits);
+         IgualarStops(c, sl);
+      }
+      return;
+   }
    if(HistoryDealGetInteger(deal, DEAL_ENTRY) != DEAL_ENTRY_OUT) return;
+   CancelarPendientes();
 
    double   profit = HistoryDealGetDouble(deal, DEAL_PROFIT), swap = HistoryDealGetDouble(deal, DEAL_SWAP);
    double   com    = HistoryDealGetDouble(deal, DEAL_COMMISSION);
