@@ -1,5 +1,5 @@
 //+------------------------------------------------------------------+
-//|                    AgentePiramide_Donchian_v1.mq5                |
+//|                    AgentePiramide_Donchian_v1.mq5  (v1.2)        |
 //|                          Instituto Quant - Agente Experto        |
 //|                                                                  |
 //|  DE DONDE SALE ESTE EA (22-ago-2026)                             |
@@ -11,10 +11,10 @@
 //|                                                                  |
 //|   1. LA SALIDA. La v7 congelaba el SL al llenar la piramide      |
 //|      (BUG-15). Sin cosecha, la v7 PIERDE en los 8 anos 2018-2025 |
-//|      en el 100% de 100 semillas (-$6.477 por 0,01 lote). El      |
-//|      famoso +$1.864 del sweet spot era UNA posicion cerrada por  |
-//|      "end of test" del tester: balance $70,87 el 29-ene-2026 y   |
-//|      un corto de 8 niveles a ~87.500 cerrado a 64.008 el 6-jul.  |
+//|      en el 100% de 100 semillas. El famoso +$1.864 del sweet     |
+//|      spot era UNA posicion cerrada por "end of test": balance    |
+//|      $70,87 el 29-ene-2026 y un corto de 8 niveles a ~87.500     |
+//|      cerrado a 64.008 el 6-jul por el tester, no por la regla.   |
 //|      Aqui, con la piramide llena, el SL comun persigue al mejor  |
 //|      precio a TrailPostPorc (trailing del pico).                 |
 //|                                                                  |
@@ -24,73 +24,80 @@
 //|      Aqui la direccion la decide una RUPTURA DONCHIAN: largo si  |
 //|      el cierre de la vela anterior supera el maximo de las N     |
 //|      velas previas, corto si rompe el minimo, y SI NO HAY        |
-//|      RUPTURA NO ENTRA. Eso es lo que mas paga: no pagar prima    |
-//|      cuando no hay movimiento.                                   |
+//|      RUPTURA NO ENTRA. No pagar prima sin movimiento es lo que   |
+//|      mas paga.                                                   |
 //|                                                                  |
-//|  LO QUE MIDIO LA REPLICA (Python, M15 Exness, bid + spread de la |
-//|  barra, recorrido O-L-H-C, gaps ejecutan el SL en la apertura,   |
-//|  swap 0). Parametros CONGELADOS: Donchian 336 + trail 0,5%.      |
-//|  Neto realizado por ano, lote 0,01 BTC (USD):                    |
-//|    2018 +8 | 2019 +215 | 2020 +299 | 2021 +922 | 2022 +98        |
-//|    2023 +929 | 2024 +674 | 2025 +831 | suma +3.978               |
-//|    Sharpe anual 1,3 | DD max $448 | ret/DD 8,9 | acierto 13-21%  |
-//|    2026 ene-jul -35 | forward 15-jul/19-ago-2026 -86 (lateral)   |
+//|  LO QUE DICE EL STRATEGY TESTER (Exness, BTCUSD M15, 2018-2025,  |
+//|  lote 0,01 sobre $2.000, niveles con orden stop)                 |
+//|  ------------------------------------------------------------    |
+//|  Modelo "cada tick" (generado; Exness solo tiene ticks reales    |
+//|  desde 2026), N=480, trail 0,5%:                                 |
+//|    2018 -22 | 2019 +88 | 2020 +54 | 2021 +425 | 2022 -96         |
+//|    2023 +741 | 2024 +270 | 2025 +643 | TOTAL +2.104              |
+//|    6/8 anos positivos | Sharpe anual 0,84 | DD max $436          |
+//|    ret/DD 4,8 | 5.216 posiciones | acierto 39%                   |
+//|    => ~13%/ano con DD del 22%, dos anos malos de ocho.           |
+//|  Modelo M1 OHLC (mas crudo), rejilla 7 N x 3 trailing:           |
+//|    N=96 pierde (-676 a -1.280); N=192 ~0; N>=288 todas positivas |
+//|    entre +515 y +756. 18 de 21 positivas: hay meseta, delgada.   |
+//|  Banda honesta a 8 anos: suelo +634 (M1) / estimacion +2.104     |
+//|  (cada tick) / techo +3.978 (replica Python, DESCARTADA).        |
 //|                                                                  |
-//|  BATERIA DE ROBUSTEZ (criterios escritos antes de mirar):        |
-//|   - Vecindario: 49 combinaciones (N 48..1344 x 7 cosechas) TODAS |
-//|     positivas a 8 anos. Es una meseta, no un pico.               |
-//|   - Fuera de muestra con parametros congelados: ETH 7/8 anos,    |
-//|     Sharpe 1,14 | XAU 6/8, 0,66 | USTEC 4/6, 0,62.               |
-//|   - Cortos positivos en 7 de 8 anos (+898 en 2021): no es solo   |
-//|     beta alcista de BTC (en 2018 los cortos dieron ~0).          |
-//|   - Slippage 0,05% adverso por salida: 6/8 anos, Sharpe 1,15.    |
-//|     0,10%: Sharpe 0,86. Spread x2: 7/8, 1,14.                    |
-//|   - Walk-forward 2018-21 -> 2022-25: 49/49 positivas fuera de    |
-//|     muestra, mediana Sharpe 0,99. Correlacion Sharpe IS/OOS      |
-//|     = -0,15: ELEGIR "EL MEJOR" NO SIRVE; usa el centro de la     |
-//|     meseta y no reoptimices por resultado.                       |
-//|   - 85 ventanas rodantes de 12 meses: 100% positivas, P10 +$111. |
-//|   - Bootstrap de ciclos (2.000 anos sinteticos): P(ano<0) 12%,   |
-//|     DD P95 $377, P99 $467 por 0,01 lote.                         |
+//|  POR QUE LA REPLICA PYTHON SE DESCARTA (leccion del caso)        |
+//|  ------------------------------------------------------------    |
+//|  Una replica fuera del tester (M15, recorrido O-L-H-C) daba      |
+//|  +3.978, 8/8 anos, Sharpe 1,3, y pasaba seis pruebas de          |
+//|  robustez (ETH fuera de muestra, slippage, walk-forward,         |
+//|  85 ventanas de 12 meses, bootstrap). El tester la corrigio x2   |
+//|  a x6. Dos causas, las dos de EJECUCION, no de senal:            |
+//|   a) v1.0 abria los niveles A MERCADO en el siguiente tick con   |
+//|      5 s de espera: en caidas rapidas se llenaban 0,2-0,3% peor  |
+//|      que el disparo, la piramide no se llenaba y no habia        |
+//|      trailing del pico. Tester v1.0: -$1.928 en 8 anos.          |
+//|      Arreglo v1.1: niveles 2..N como ORDENES STOP en el disparo. |
+//|   b) El recorrido intrabarra. Con escalones y trailing de 0,5%,  |
+//|      el orden en que el precio visita maximo y minimo dentro de  |
+//|      15 minutos decide si la piramide se llena y cuando salta el |
+//|      trailing. La replica elegia, sin querer, el orden bueno.    |
+//|      Y el modelo de ticks del propio tester mueve el resultado   |
+//|      x2,4 (2025: M1 +273 vs cada tick +643).                     |
+//|  Moraleja: la ejecucion es parte del sistema, y nada fuera del   |
+//|  tester vale como evidencia. Orden a mercado vs orden stop en    |
+//|  una piramide = -$2.500 en 8 anos con la MISMA senal.            |
 //|                                                                  |
-//|  COMPARACION (misma bateria, a igual DD maximo del 25%):         |
+//|  COMPARACION A IGUAL DD MAXIMO (25%)                             |
 //|    XAU M15 Runner (EA de un alumno, en REAL): ~27%/ano, 5/5 anos |
-//|    Este EA en BTC: ~28%/ano (mediana 27%), 8/8 anos              |
-//|    Este EA en ETH: ~46%/ano (36% sin 2021), 7/8 anos             |
-//|    Este EA en XAU: ~10%/ano -> en oro el Runner es mucho mejor   |
-//|    Holdear BTC:   +531% en 8 anos con DD 80%: inoperable         |
+//|    Este EA en BTC (tester cada tick): ~13%/ano, 6/8 anos         |
+//|    Holdear BTC: +531% en 8 anos con DD 80%: inoperable           |
+//|  En oro el Runner gana de largo; en BTC este EA es "BTC con stop |
+//|  y piramidacion": control de riesgo, no alfa.                    |
 //|                                                                  |
-//|  DIMENSIONADO: DD P95 anual $377 por 0,01 lote de BTC -> para un |
-//|  DD tope del 25%: $1.500-2.000 POR CADA 0,01 LOTE. Con $250 el   |
-//|  DD P95 es del 150% (ruina). Cifra honesta para comunicar:       |
-//|  15-30%/ano a 25% de DD con un ano de cada 8-10 cerca de cero.   |
+//|  DIMENSIONADO: DD max $436 por 0,01 lote (cada tick) -> para un  |
+//|  DD tope del 25%: $1.750-2.000 POR CADA 0,01 LOTE. Con $250 el   |
+//|  DD es del 175% (ruina).                                         |
 //|                                                                  |
-//|  LO QUE NO ESTA DEMOSTRADO (por eso va a DEMO con telemetria):   |
-//|   - Es una replica Python, no el Strategy Tester: este EA debe   |
-//|     reproducir primero el signo y la magnitud por ano de arriba. |
-//|   - Trailing a 0,5% en BTC: sensible a la ejecucion real.        |
-//|   - El diseno se eligio en 2026 mirando 2018-2025 de BTC; la     |
-//|     unica evidencia realmente fuera de muestra es ETH/XAU/USTEC. |
-//|   - El forward jul-ago-2026 es negativo en TODAS las variantes.  |
-//|   - Swap 0 en la replica (la demo Exness registro 0).            |
-//|  Plan pre-registrado: tester MT5 -> demo $2.000 por 0,01 lote,   |
-//|  >= 6 meses, agente propio en el hub -> ETH en paralelo.         |
-//|  Alarma: 12 meses rodantes negativos (nunca ocurrio en 85).      |
+//|  VEREDICTO (22-ago-2026): candidato TIBIO. Vale una DEMO con     |
+//|  telemetria (cuesta cero): N=480, trail 0,5%, 0,01 lote por cada |
+//|  $2.000, magic 2026082201, agente propio en el hub, >= 6 meses.  |
+//|  Alarma: 12 meses rodantes negativos. NO vale dinero ni promesa. |
+//|  Cifra honesta para comunicar: 10-15%/ano a 25% de DD con dos    |
+//|  anos malos de cada ocho.                                        |
 //|                                                                  |
-//|  v1.1 (22-ago-2026, tras el primer tester): los niveles 2..N se  |
-//|  colocan como ORDENES STOP PENDIENTES en su precio de disparo    |
-//|  (extrema +/- PasoPorc). La v1.0 los abria a mercado en el       |
-//|  siguiente tick con 5 s de espera y en movimientos rapidos los   |
-//|  llenaba 0,2-0,3% peor que el disparo: la piramide no se llenaba |
-//|  y el tester dio -$1.928 en 8 anos frente a +$3.978 de la        |
-//|  replica. La replica asume llenado en el disparo: eso SOLO es    |
-//|  realista con una orden stop. Leccion para el caso: el tester    |
-//|  es el criterio 1 por algo.                                      |
-//|  Fuentes: ORO/docs/10_PIRAMIDE_SINTETICA_BTC.md (secciones 8-13) |
-//|  y ORO/code/investigacion-btc/piramide_*.py (replica y pruebas). |
+//|  LO QUE SIGUE SIN DEMOSTRARSE: ticks reales (solo desde 2026),   |
+//|  ejecucion real del trailing a 0,5% en BTC, slippage de 8        |
+//|  posiciones saliendo a la vez, swap (0 en la demo), ETH sin      |
+//|  tester propio, y el forward jul-ago-2026 negativo.              |
+//|  No reoptimizar por resultado: en la rejilla, la correlacion     |
+//|  entre el mejor parametro de un periodo y el siguiente es ~0.    |
+//|                                                                  |
+//|  HISTORIAL: v1.0 niveles a mercado (tester -1.928) | v1.1        |
+//|  niveles con orden stop (+634 M1 / +2.104 cada tick) | v1.2 solo |
+//|  cambia la cabecera y el N por defecto a 480 (el de la demo).    |
+//|  Fuentes: ORO/docs/10_PIRAMIDE_SINTETICA_BTC.md (secciones 8-14),|
+//|  ORO/out/tester/ (informes) y ORO/code/investigacion-btc/.       |
 //+------------------------------------------------------------------+
 #property copyright "Instituto Quant"
-#property version   "1.10"
+#property version   "1.20"
 #property description "Ruptura Donchian + piramide de niveles + trailing comun + trailing del pico. Sin ruptura no entra."
 
 #include <Trade\Trade.mqh>
@@ -98,7 +105,7 @@
 
 //--- SENAL (valores congelados: centro de la meseta; no reoptimizar por resultado)
 input ENUM_TIMEFRAMES PeriodoSenal   = PERIOD_M15;  // Marco de la ruptura
-input int    DonchianBarras  = 336;         // N velas previas (336 M15 = 3,5 dias)
+input int    DonchianBarras  = 480;         // N velas previas (480 M15 = 5 dias; meseta N>=288)
 //--- PIRAMIDE (identica a la v7)
 input double LoteBase        = 0.01;        // Lote de cada nivel
 input double SLPorc          = 1.0;         // SL de cada nivel (% de su entrada)
