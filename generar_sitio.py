@@ -192,6 +192,9 @@ ol.metodo li { margin-bottom:8px; }
 footer { margin-top:56px; color:var(--muted); font-size:12.5px; border-top:1px solid var(--grid); padding-top:16px; }
 a { color:var(--pos); }
 </style>
+<!-- Google Ads (Standard Rico Company LLC, 916-109-1988): audiencias de remarketing, 30-sep-2026 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18444174367"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','AW-18444174367');</script>
 </head>
 <body>
 <div class="topnav">
